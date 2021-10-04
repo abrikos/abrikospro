@@ -7,7 +7,6 @@ export default function LangSwitch(props) {
     const buttons = [
         {language: 'en-US', text: <strong>EN</strong>},
         {language: 'ru-RU', text: <strong>RU</strong>},
-        {language: 'fr-FR', text: <strong>FR</strong>},
     ]
     const activeButton = buttons.find(b=>b.language === language);
 

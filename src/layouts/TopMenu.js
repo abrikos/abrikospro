@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Container, Nav, Navbar} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import LangSwitch from "../features/language/LangSwitch";
 
@@ -14,18 +14,17 @@ export default function TopMenu(props) {
     function logout() {
         setUser(null);
     }
-
     return <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            <Navbar.Brand href="#home">Abrikos HP</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
                     <Nav.Link as={Link} to="/">{props.t('Home')}</Nav.Link>
-                    <Nav.Link as={Link} to="/test">Test</Nav.Link>
+                    <Nav.Link as={Link} to="/portfolio">{props.t('Portfolio')}</Nav.Link>
                 </Nav>
                 <Nav>
-                    {user && <Nav.Link as={Link} to="/cabinet">
+                    {/*{user && <Nav.Link as={Link} to="/cabinet">
                         {user.name}
                     </Nav.Link>}
 
@@ -34,7 +33,7 @@ export default function TopMenu(props) {
                     </Nav.Link>}
                     {!user && <Nav.Link onClick={login}>
                         Login
-                    </Nav.Link>}
+                    </Nav.Link>}*/}
                     <LangSwitch {...props}/>
                 </Nav>
             </Navbar.Collapse>

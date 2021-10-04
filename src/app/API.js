@@ -50,16 +50,15 @@ function API(dispatch) {
         },
 
         getStorage(key) {
-                try {
-                    return JSON.parse(localStorage[key])
-                } catch (e) {
-                    console.log(key, e)
-                    return  localStorage[key]
-                }
+            try {
+                return JSON.parse(localStorage.getItem(key))
+            } catch (e) {
+                return localStorage.getItem(key)
+            }
         },
 
         saveStorage(key, val) {
-            localStorage.setItem(key,val)
+            localStorage.setItem(key, typeof val === 'object' ? JSON.stringify(val) : val)
             //localStorage[key] = JSON.stringify(val);
         }
     }

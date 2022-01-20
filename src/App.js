@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import storeRedux from "app/storeRedux";
 import API from "app/API"
 import {useDispatch} from "react-redux";
+import "./App.sass"
 
 function App() {
     const dispatch = useDispatch();

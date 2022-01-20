@@ -3,6 +3,7 @@ import React from 'react';
 export default function Portfolio(props) {
 
     const sites = [
+        {url: 'https://hh.ru/resume/1de9aaf1ff07792fc30039ed1f7a7662674833', description: 'Резюме'},
         {url: 'https://gobip.pro', description: 'Сайт P2P мини-игр'},
         {url: 'https://github.com/abrikos/weather-widget', description: 'Weather widget'},
         {url: 'http://iltumen.ru/', description: 'Государственное собрание (ИЛ ТУМЭН) РС(Я)'},

@@ -5,6 +5,7 @@ import storeRedux from "app/storeRedux";
 import API from "app/API"
 import {useDispatch} from "react-redux";
 import "./App.sass"
+import logo from "./images/logo.png";
 
 function App() {
     const dispatch = useDispatch();
@@ -13,7 +14,7 @@ function App() {
 
     return (
         <div className="App">
-            <Routes {...api}/>
+            <img src={logo}/>
         </div>
     );
 }

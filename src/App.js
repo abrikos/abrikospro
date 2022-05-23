@@ -6,18 +6,33 @@ import API from "app/API"
 import {useDispatch} from "react-redux";
 import "./App.sass"
 import logo from "./images/logo.png";
+import VideoJS from "./VideoJS";
+import CardArchive from "./CardArchive";
 
 function App() {
     const dispatch = useDispatch();
     const api = API(dispatch);
     console.log('STORE', storeRedux.getState())
 
+    const handlePlayerReady = (player) => {
+        // you can handle player events here
+        player.on('play', () => {
+            console.log('dddddddd');
+        });
+
+        player.on('waiting', () => {
+            console.log('player is waiting');
+        });
+
+        player.on('dispose', () => {
+            console.log('player will dispose');
+        });
+    };
+
     return (
         <div className="App">
-            <video>
-                <source src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h265/1080/Big_Buck_Bunny_1080_10s_30MB.mp4" type='video/mp4; codecs="hvc1"' />
-            </video>
-            <img src={logo}/>
+            <CardArchive/>
+            {/*<img src={logo}/>*/}
         </div>
     );
 }

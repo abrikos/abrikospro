@@ -23,6 +23,7 @@
     "sass": "^1.41.1",
     "universal-cookie": "^4.0.4",
     "use-subscription": "^1.5.1",
+    "video.js": "^7.19.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

@@ -14,6 +14,9 @@ function App() {
 
     return (
         <div className="App">
+            <video>
+                <source src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h265/1080/Big_Buck_Bunny_1080_10s_30MB.mp4" type='video/mp4; codecs="hvc1"' />
+            </video>
             <img src={logo}/>
         </div>
     );

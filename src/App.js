@@ -31,8 +31,7 @@ function App() {
 
     return (
         <div className="App">
-            <CardArchive/>
-            {/*<img src={logo}/>*/}
+            <img src={logo}/>
         </div>
     );
 }

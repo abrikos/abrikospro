@@ -1,7 +1,5 @@
-//export {default as Reversi} from "./Reversi-Module"
-export {default as TicTacToe} from "./TicTacToe-Module"
-//export {default as Dices} from "./Poker-Module"
-//export {default as Poker} from "./Poker-Module"
-export {default as RoPaSci} from "./RoPaSci-Module"
-export {default as SeaBattle} from "./SeaBattle-Module"
-//export {default as Race} from "./Race-Module"
+const TicTack = require('./TicTacToe-Module')
+
+module.exports={
+    TicTack
+}

@@ -32,5 +32,9 @@
 	"E-mail must be valid": "Не верный e-mail",
 	"Email exists": "Такой адрес уже зарегистрирован",
 	"Password change confirmation code sent to email": "Подтверждение о смене пароля выслано на e-mail",
-	"New password sent to email": "Новый пароль отправлени на e-mail"
+	"New password sent to email": "Новый пароль отправлени на e-mail",
+
+	"Tic Tac Toe": "Крестики нолики",
+	"5 cells in a line wins the game": "5 ячеек в линию - победа",
+	"Rock Paper Scissors": "Камень ножницы бумага"
 }

@@ -1,10 +1,8 @@
-import moment from "moment";
-
 const cols = 10;
 const rows = 10;
 const winRows = 5;
 
-const RoPaSciModule = {
+module.exports =  {
     //useTimer: true,
     initialStake: 100,
     order: 1,
@@ -121,4 +119,3 @@ const RoPaSciModule = {
     },
 
 }
-export default RoPaSciModule

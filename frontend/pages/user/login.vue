@@ -21,6 +21,7 @@
         <v-btn @click="submit" class="my-4">{{ $t('Send') }}</v-btn>
         <v-spacer/>
         <v-btn to="'/user/reset-password'" class="my-4">{{ $t('Reset password') }}</v-btn>
+        <LoginTelegram/>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -28,8 +29,11 @@
 
 <script>
 
+import LoginTelegram from "~/components/LoginTelegram.vue";
+
 export default {
   name: "login",
+  components: {LoginTelegram},
   auth: false,
   data() {
     const login = window?.location.host === 'test.abrikos.pro' ? {

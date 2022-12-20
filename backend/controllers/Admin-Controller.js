@@ -1,10 +1,5 @@
 const passport = require('../passport');
-const fs = require('fs');
-const csv = require('csv-parser')
 const clc = require("cli-color");
-const XLSX = require('xlsx');
-const sharp = require('sharp');
-const moment = require("moment");
 module.exports = function (app) {
     const {db} = app.locals;
 

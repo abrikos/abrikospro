@@ -11,13 +11,14 @@ const validateEmail = function (email) {
 
 const schema = new Schema({
         fullName: {type: String},
+        photo: {type: String},
         isAdmin: {type: Boolean},
         email: {
             type: String,
             trim: true,
             lowercase: true,
-            unique: true,
-            required: 'Email address is required',
+            //unique: true,
+            //required: 'Email address is required',
             validate: [validateEmail, 'Please fill a valid email address'],
             match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
         },
@@ -25,6 +26,8 @@ const schema = new Schema({
         blocked: {type:Boolean, default: false},
         passwordHash: {type: String},
         resetCode: {type: String},
+        externalId: {type: String},
+        strategy: {type: String},
     },
     {
         timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'},
@@ -33,6 +36,10 @@ const schema = new Schema({
         // see http://stackoverflow.com/q/13133911/488666
         toJSON: {virtuals: true}
     });
+
+schema.statics.population = [
+    {path:'check', populate:'goods'}
+]
 
 schema.methods.checkPasswd = function (passwd) {
     return md5(passwd) === this.passwordHash;
@@ -57,15 +64,14 @@ schema.virtual('loggedDate')
         return moment.unix(this.logged).format('YYYY-MM-DD HH:mm');
     })
 
-
 schema.virtual('tokens', {
     ref: 'token',
     localField: '_id',
     foreignField: 'user'
 })
 
-schema.virtual('configurations', {
-    ref: 'configuration',
+schema.virtual('checks', {
+    ref: 'check',
     localField: '_id',
     foreignField: 'user'
 })

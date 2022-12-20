@@ -14,11 +14,11 @@ module.exports = function (app) {
             if (!user) {
                 return bot.sendMessage(msg.chat.id, 'Только для зарегистрированных пользователей')
             }
-            if (msg.document && msg.document.mime_type === 'application/json') {
+            if (msg.document) {
                 const fileInfo = await bot.getFile(msg.document.file_id);
                 const response = await axios(`https://api.telegram.org/file/bot${process.env.BOT_TOKEN}/${fileInfo.file_path}`)
                 const checkData = response.data
-                checkData.shop = checkData.user;
+                checkData.owner = checkData.user;
                 checkData.user = user;
                 const check = await db.check.create(checkData);
                 await check.populate(db.check.population);
@@ -27,8 +27,10 @@ module.exports = function (app) {
                     await db.good.create(item)
                 }
                 await check.populate(db.check.population);
-                await bot.sendMessage(msg.chat.id, `${check.shop}. Чек на сумму ${check.sum.toFixed(2)} принят`)
-
+                await bot.sendMessage(msg.chat.id, `${check.owner} - ${check.retailPlace}. Чек на сумму ${check.sum.toFixed(2)} принят`)
+            }
+            else{
+                console.log(msg)
             }
         } catch (e) {
             await bot.sendMessage(msg.chat.id, `Ошибка ввода чека: ${e.message}`)

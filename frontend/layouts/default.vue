@@ -11,6 +11,9 @@
         <v-btn id to="/game">
           {{$t('Games')}}
         </v-btn>
+        <v-btn id to="/checks" v-if="user">
+          {{$t('Checks')}}
+        </v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">

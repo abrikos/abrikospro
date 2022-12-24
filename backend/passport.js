@@ -88,7 +88,7 @@ const strategies = {
             const hmac = crypto.createHmac('sha256', secret)
                 .update(checkString)
                 .digest('hex');
-            console.log(hmac , hash)
+            return hmac === hash
         }
         const data = req.body
         if (checkSignature(data)) {

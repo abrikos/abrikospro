@@ -11,7 +11,7 @@ const schema = new Schema({
         operator: {type: String},
         fiscalDocumentNumber: {type: Number, unique: true},
         fiscalSign: {type: Number, unique: true},
-        dateTime: {type: Number},
+        dateTime: {type: Date},
         user: {type: mongoose.Schema.Types.ObjectId, ref: 'user'},
     },
     {

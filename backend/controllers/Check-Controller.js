@@ -6,7 +6,7 @@ module.exports = function (app) {
     const {db} = app.locals;
     app.get('/api/check/list', passport.isLogged, async (req, res) => {
         const {user} = res.locals;
-        console.log(user)
+        logger(user)
         const checks = await db.check.find({user})
             .sort({dateTime: -1})
             .populate(db.check.population)
@@ -19,21 +19,12 @@ module.exports = function (app) {
             //{$match: {user:user.id}},
             //{ "$unwind": "$goods" },
             {
-                $lookup: {
-                    from: 'good',
-                    localField: '_id',
-                    foreignField: 'check',
-                    as: 'goods'
-                }
-            },
-            /*{
                 $group: {
                     _id: {
                         year: {$year: "$dateTime"},
                         month: {$month: "$dateTime"},
                     },
                     testSum:{$sum:"$fiscalSign"},
-                    testSum2:{$push:"$goods"}
                 }
             },
             {
@@ -44,9 +35,9 @@ module.exports = function (app) {
                   testSum2:"$testSum2"
               }
             },
-            {$sort: {_id: 1}}*/
+            {$sort: {_id: 1}}
         ])
-        logger(res)
+        //logger(res)
     }
 
 
@@ -69,7 +60,6 @@ module.exports = function (app) {
             for (const checkImported of JSON.parse(data)) {
                 const checkData = checkImported.ticket.document.receipt;
                 checkData.owner = checkData.user;
-                console.log(checkData.owner)
                 checkData.user = user;
                 try {
                     const check = await db.check.create(checkData);
@@ -79,7 +69,6 @@ module.exports = function (app) {
                         await db.good.create(item)
                     }
                 } catch (e) {
-                    console.log('exisits', checkData.owner)
                 }
                 //await check.populate(db.check.population);
             }

@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 //const axios = require('axios');
 const bot = new TelegramBot(process.env.BOT_TOKEN, {polling: true});
-
+const logger = require('../logger')
 
 module.exports = function (app) {
     const {db} = app.locals;
@@ -30,7 +30,7 @@ module.exports = function (app) {
                 await bot.sendMessage(msg.chat.id, `${check.owner} - ${check.retailPlace}. Чек на сумму ${check.sum.toFixed(2)} принят`)
             }
             else{
-                console.log(msg)
+                logger(msg)
             }
         } catch (e) {
             await bot.sendMessage(msg.chat.id, `Ошибка ввода чека: ${e.message}`)

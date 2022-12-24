@@ -67,6 +67,7 @@ export default {
         f.figure = 'toc'
     },
     init() {
+      this.win = null
       this.cells = Array.from(Array(this.fieldLength * this.fieldLength).keys()).map(c => ({figure: ''}))
     }
   }

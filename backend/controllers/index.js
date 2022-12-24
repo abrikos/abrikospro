@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const chalk = require('cli-color');
+const logger = require('../logger')
 
 const basename = path.basename(__filename);
 
@@ -16,8 +17,8 @@ module.exports = function (app){
         const module = require(fpath);
         module(app)
       }catch (e) {
-        console.log(chalk.yellow( 'WARN: Script ' + file + ' - not a module', fpath))
-        console.log(e)
+        logger(chalk.yellow( 'WARN: Script ' + file + ' - not a module', fpath))
+        logger(e)
       }
 
     });

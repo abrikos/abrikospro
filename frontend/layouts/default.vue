@@ -30,7 +30,7 @@
           </v-list>
         </v-menu>
 
-        <v-btn to="/cabinet/settings" v-if="user">{{ user.email }}</v-btn>
+        <v-btn to="/cabinet/settings" v-if="user">{{ user.email || user.fullName }}</v-btn>
         <v-btn to="/user/signup" v-if="!user" id>{{$t('Signup')}}</v-btn>
         <v-btn to="/user/login" v-if="!user" id>{{$t('Login')}}</v-btn>
         <v-btn @click="logout" v-if="user" id>{{$t('Logout')}}</v-btn>

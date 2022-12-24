@@ -1,121 +1,53 @@
-const cols = 10;
-const rows = 10;
-const winRows = 5;
-
-module.exports =  {
-    //useTimer: true,
-    initialStake: 100,
+const logger = require('../logger')
+const winCount = 4
+module.exports = {
     order: 1,
+    winCount,
+    cols: 10,
+    rows: 10,
+    name: 'tictactoe',
     label: "Tic Tac Toe",
-    description:`${winRows} cells in a line wins the game`,
+    description: `${winCount} cells in a line wins the game`,
     shiftFirstTurn: true,
-    defaultData: {
-        winRows,
-        cols,
-        rows,
-        initialStake: 100,
-        turns: []
-    },
+    defaultData: {winner: false, cells: []},
     hideOpponentData(game, req) {
         return game;
     },
 
-    onJoin(game){
-        if (game.players.length === 2) {
-            this.initTable(game)
-        }
-        return {}
+    initTable(game) {
     },
 
-    getCells(){
-        return Array.from({length: rows * cols}, (v, i) => {
-            return {col: i % rows, row: Math.ceil((i + 1) / rows) - 1}
-        });
-
-    },
-
-    hasWinners(game) {
+    doTurn(game, body, userId) {
         const data = game.data;
-        const winnerCells = this.isWinner(game);
-        for (const w of winnerCells) {
-            data.cells[this._id(w)].win = 1;
-        }
-        game.data = data;
-        if (winnerCells.length) {
-            game.winners.push(game.players.find(p => p.equals(winnerCells[0].userId)));
-        } else {
-            const emptyCells = game.data.cells.filter(c => !c.userId).length;
-            if (!emptyCells) {
-                game.winners = game.players;
+        logger(data)
+        const {row, col} = body;
+        const index = this.cellIndex(row, col)
+        const cellExists = data.cells.find(c => c.index === index);
+        if (cellExists) return;
+        const player = userId || 'player'
+
+        data.cells.push({index, player, row, col})
+        logger(data.cells)
+        const test = ([r, c]) => {
+            let check = 0
+            for (let i = 0; i < this.winCount; i++) {
+                if (data.cells.find(d => d.player === player && d.index === this.cellIndex(row + i * r, col + i * c))) check++
+                //console.log(row + i * r, col + i * c,this.cellIndex(row + i * r, col + i * c))
             }
+            if (check === this.winCount) return 1
         }
-        return game.winners.length;
-    },
-
-    _id(turn) {
-        return cols * turn.row + turn.col;
-    },
-
-    initTable(game){
-        const data = game.data;
-        data.cells = this.getCells();
-        game.data = data;
-    },
-
-    doTurn(game, userId, body) {
-        const {turn} = body;
-        if(!turn) return;
-        const data = game.data;
-        const cell = data.cells.find(c => c.row === turn.row && c.col === turn.col);
-        if (!cell) return;
-        if (cell.userId) return;
-        cell.userId = userId;
-        //data.turns.push({turn, userId: req.session.userId});
-        game.data = data;
-        return {}
-    },
-
-    isWinner(game) {
-        const vectors = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]]
-        //const vectors =[ [0,1]]
-        for (const cell of game.data.cells.filter(c => c.userId)) {
-            for (const vector of vectors) {
-                const ids = []
-                for (let i = 0; i < game.data.winRows; i++) {
-                    const c = game.data.cells.find(c => c.row === cell.row + vector[0] * i && c.col === cell.col + vector[1] * i)
-                    if (c && c.userId === cell.userId) {
-                        ids.push(c)
-                    }
-                }
-                if (ids.length >= game.data.winRows) {
-                    return ids
-                }
-            }
+        const vectors = [[0, 1], [1, 0], [1, 1], [0, -1], [-1, 0], [-1, -1]]
+        const result = []
+        for (const vector of vectors) {
+            result.push(test(vector))
         }
-        return [];
+        data.winner = result.includes(1) && player
+        return data
     },
 
-    /*nextTurn(game, req) {
-        console.log(game.players.map(p => p.id).indexOf(req.session.userId))
-        return game.players.map(p => p.id).indexOf(req.session.userId) + 1;
-    },*/
-
-    getBank(game) {
-        return Object.values(game.stakes).reduce((a, b) => a + b, 0)
+    cellIndex(row, col) {
+        return (row - 1) * this.cols + (col - 1)
     },
 
-    canJoin(game, req) {
-        return game.players.length < 2;
-    },
-    onLeave(game, req) {
-        game.data = this.defaultData;
-    },
-    canLeave(game, req) {
-        return true;
-        //return game.data.turns.length === 0;
-    },
-    onBet() {
-
-    },
 
 }

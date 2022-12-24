@@ -1,9 +1,8 @@
 <template>
   <div>
     GAMES
-    <div v-for="(game,i) of $gameList()" :key="i">
-
-      <router-link :to="game.to">{{game.name}}</router-link>
+    <div v-for="(game,i) of games" :key="i">
+      <span class="link" @click="goTo(game)">{{$t(game.label)}}</span>
     </div>
   </div>
 </template>
@@ -20,6 +19,10 @@ export default {
     this.loadGames()
   },
   methods:{
+    async goTo(game){
+      const created = await this.$axios.$get('/game/create/'+game.name)
+      this.$router.push('/game/'+created.id)
+    },
     async loadGames(){
       this.games = await this.$axios.$get('/game/list')
     }
@@ -27,6 +30,7 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="sass">
+.link
+  cursor: pointer
 </style>

@@ -1,5 +1,5 @@
-const TicTack = require('./TicTacToe-Module')
+const TicTac = require('./TicTacToe-Module')
 
 module.exports={
-    TicTack
+    [TicTac.name]: TicTac
 }

@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>{{ $t('Tic Tac Toe') }}</h1>
+    {{game}}
     <table>
       <tr v-for="row in fieldLength" :key="row">
         <td v-for="col in fieldLength" :key="col" @click="cellClick(row,col)" :class="getCellFigure(row,col)">
@@ -16,6 +17,7 @@
 <script>
 export default {
   name: "tic-tac-toe",
+  props: ['game'],
   data() {
     return {
       fieldLength: 10,
@@ -30,7 +32,7 @@ export default {
   methods: {
     getCellFigure(row, col) {
       const cell = this.cells[this.cellIndex(row, col)]
-      if(!cell) return ''
+      if (!cell) return ''
       return cell.figure
     },
     cellIndex(row, col) {
@@ -58,8 +60,10 @@ export default {
     },
 
     cellClick(row, col) {
+      this.$axios.$post('/game/tic-tac-toe/turn', {row, col})
+      return
       this.cells[this.cellIndex(row, col)].figure = 'tic'
-      if(this.testCell(row, col)) this.win = 'WINNER'
+      if (this.testCell(row, col)) this.win = 'WINNER'
       return
       const free = this.cells.filter(c => !c.figure)
       const f = free[Math.floor(Math.random() * free.length)]

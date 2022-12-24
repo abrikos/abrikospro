@@ -1,7 +1,11 @@
 <template lang="pug">
   div
-    input(type="file" accept=".json" @change="upload" ref="uploadInput" hidden)
-    v-btn(@click="btnClick()" color="primary") Загрузить JSON
+    div.upload
+      span Загрузка JSON чеков из приложения "Проверка чеков ФНС России"
+      a( href='https://play.google.com/store/apps/details?id=ru.fns.billchecker&hl=ru&gl=US&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1')
+        img(alt='Доступно в Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/ru_badge_web_generic.png')
+      input(type="file" accept=".json" @change="upload" ref="uploadInput" hidden)
+      v-btn(@click="btnClick()" color="primary") Загрузить JSON
     div      {{totalSum}}
     div.check(v-for="check of checks")
       h3
@@ -62,6 +66,14 @@ export default {
 </script>
 
 <style scoped lang="sass">
+.upload
+  border: 1px solid silver
+  padding: 10px
+  display: flex
+  flex-direction: column
+  align-items: center
+  img
+    width: 230px
 .check
   h3
     display: flex

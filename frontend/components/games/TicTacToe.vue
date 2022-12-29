@@ -1,29 +1,57 @@
 <template lang="pug">
   div
-    table
-      tr(v-for="row in game.params.rows")
-        td(v-for="col in game.params.cols" @click="doTurn(row,col)" v-bind:class="{ active: isActive(row,col) }")  {{row}} {{col}}
+    span {{fieldWidth}}
+    div.field
+      div(v-for="cell in game.data.cells" @click="doTurn(cell.index)" v-bind:class="{player: isPlayer(cell), bot:isBot(cell)}") {{cell.index}}
 </template>
 
 <script>
 export default {
   name: "TicTacToe",
   props: ['game', 'loadData'],
+  data(){
+    return {
+      cellWidth: 40,
+    }
+  },
+  computed:{
+    fieldWidth(){
+      return this.game?.params.cols * this.cellWidth + 'px'
+    },
+    cellWidthPx(){
+      return this.cellWidth + 'px'
+    }
+  },
   methods:{
-    async doTurn(row,col){
-      await this.$axios.$put('/game/'+this.game.id+'/turn', {row,col})
+    async doTurn(index){
+      await this.$axios.$put('/game/'+this.game.id+'/turn', {index})
       await this.loadData()
     },
-    isActive(row,col){
-      return this.game.data.cells.find(c=>c.row===row && c.col ===col)
+    isPlayer(cell){
+      return this.game.data.cells.find(c=>c.index ===cell.index)?.player === 'player'
+    },
+    isBot(cell){
+      return this.game.data.cells.find(c=>c.index ===cell.index)?.player === 'bot'
     }
   }
 }
 </script>
 
 <style scoped lang="sass">
-td
-  cursor: pointer
-td.active
-  background-color: #3e8ddd
+.field
+  display: flex
+  width: v-bind('fieldWidth')
+  flex-wrap: wrap
+  div
+    display: flex
+    justify-content: center
+    align-items: center
+    cursor: pointer
+    width: v-bind('cellWidthPx')
+    height: v-bind('cellWidthPx')
+    border: 1px solid silver
+  .player
+    background-color: #3e8ddd
+  .bot
+    background-color: red
 </style>

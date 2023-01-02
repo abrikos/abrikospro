@@ -43,10 +43,10 @@ schema.pre('save', function (next) {
         wordsPerString: 3,
         formatter: (word, i) => i ? word : word.slice(0, 1).toUpperCase().concat(word.slice(1))
     })[0]
-    if(this.isNew) {
+   /* if(this.isNew) {
         this.dataString = JSON.stringify(games[this.type].defaultData)
         logger(this.dataString)
-    }
+    }*/
     next();
 })
 

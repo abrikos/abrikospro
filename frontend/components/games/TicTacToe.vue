@@ -1,13 +1,13 @@
 <template lang="pug">
   div
     div.field
-      div(v-for="index in game.params.fieldSize" @click="doTurn(index)" v-bind:class="{player: isPlayer(index), bot:isBot(index), winner: isWinner(index)}") {{index}}
+      div(v-for="index in game.params.fieldSize" @click="doTurn({index})" v-bind:class="{player: isPlayer(index), bot:isBot(index), winner: isWinner(index)}") {{index}}
 </template>
 
 <script>
 export default {
   name: "TicTacToe",
-  props: ['game', 'loadData'],
+  props: ['game', 'loadData', 'doTurn'],
   data() {
     return {
       cellWidth: 40,
@@ -22,10 +22,6 @@ export default {
     },
   },
   methods: {
-    async doTurn(index) {
-      await this.$axios.$put('/game/' + this.game.id + '/turn', {index})
-      await this.loadData()
-    },
     isPlayer(index) {
       return this.game.data.cells.find(c => c.index === index)?.player === 'player'
     },

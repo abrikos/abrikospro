@@ -3,7 +3,6 @@ const winCount = 4
 const rows = 10;
 const cols = 10;
 module.exports = {
-    order: 1,
     winCount,
     cols,
     rows,
@@ -64,14 +63,12 @@ module.exports = {
     },
 
     botTurn(game) {
-        logger('zzzzzz')
         const data = game.data;
         const freeIndexes = this.indexes.filter(i => !data.cells.filter(c => c.player).map(c => c.index).includes(i));
         const opponent = data.cells.find(c=>c.player || c.player !== 'bot')
         const possibleLines = this.checkLine(data.cells, opponent.player, this.winCount - 2)
         let index = freeIndexes[Math.floor(Math.random() * freeIndexes.length)];
         if(possibleLines) {
-
             const test1 = possibleLines.indexes[0] + this.cols * (possibleLines.vector[0]* -1) + (possibleLines.vector[0]* -1)
             const test2 = possibleLines.indexes[1] + this.cols * (possibleLines.vector[0]* 1) + (possibleLines.vector[0] * 1)
             const cell1 = data.cells.find(c=>c.index===test1)
@@ -81,8 +78,6 @@ module.exports = {
             }else if (!cell2){
                 index = test2
             }
-            logger(possibleLines, test1, test2)
-            //const test2 = possibleLines[possibleLines.length]
         }
         return this.doTurn(game, {index}, 'bot')
     },

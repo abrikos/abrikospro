@@ -1,37 +1,39 @@
 <template lang="pug">
   div
-    span {{fieldWidth}}
     div.field
-      div(v-for="cell in game.data.cells" @click="doTurn(cell.index)" v-bind:class="{player: isPlayer(cell), bot:isBot(cell)}") {{cell.index}}
+      div(v-for="index in game.params.fieldSize" @click="doTurn(index)" v-bind:class="{player: isPlayer(index), bot:isBot(index), winner: isWinner(index)}") {{index}}
 </template>
 
 <script>
 export default {
   name: "TicTacToe",
   props: ['game', 'loadData'],
-  data(){
+  data() {
     return {
       cellWidth: 40,
     }
   },
-  computed:{
-    fieldWidth(){
+  computed: {
+    fieldWidth() {
       return this.game?.params.cols * this.cellWidth + 'px'
     },
-    cellWidthPx(){
+    cellWidthPx() {
       return this.cellWidth + 'px'
-    }
+    },
   },
-  methods:{
-    async doTurn(index){
-      await this.$axios.$put('/game/'+this.game.id+'/turn', {index})
+  methods: {
+    async doTurn(index) {
+      await this.$axios.$put('/game/' + this.game.id + '/turn', {index})
       await this.loadData()
     },
-    isPlayer(cell){
-      return this.game.data.cells.find(c=>c.index ===cell.index)?.player === 'player'
+    isPlayer(index) {
+      return this.game.data.cells.find(c => c.index === index)?.player === 'player'
     },
-    isBot(cell){
-      return this.game.data.cells.find(c=>c.index ===cell.index)?.player === 'bot'
+    isBot(index) {
+      return this.game.data.cells.find(c => c.index === index)?.player === 'bot'
+    },
+    isWinner(index) {
+      return this.game.data.winner && this.game.data.winner.includes(index)
     }
   }
 }
@@ -42,6 +44,7 @@ export default {
   display: flex
   width: v-bind('fieldWidth')
   flex-wrap: wrap
+
   div
     display: flex
     justify-content: center
@@ -50,8 +53,13 @@ export default {
     width: v-bind('cellWidthPx')
     height: v-bind('cellWidthPx')
     border: 1px solid silver
+
+  .winner
+    border-color: red
+    border-width: 4px
   .player
     background-color: #3e8ddd
+
   .bot
-    background-color: red
+    background-color: sandybrown
 </style>

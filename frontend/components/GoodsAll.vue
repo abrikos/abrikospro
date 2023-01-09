@@ -1,14 +1,14 @@
 <template lang="pug">
-  div
+  div.pa-3
     v-text-field(v-model="search" placeholder="Введите название продукта" )
-    div
-      div(v-for="good of goodsFiltered").row
-        span.date {{good.date}}
-        span.retailPlace {{good.retailPlace}}
-        span.name {{good.name}}
-        span.price {{good.price}}
-        span.quantity {{good.quantity}}
-        span.sum {{good.sum}}
+    table
+      tr(v-for="good of goodsFiltered")
+        td.date {{good.date}}
+        td.retailPlace {{good.retailPlace}}
+        td.name {{good.name}}
+        td.price {{good.price}}
+        td.quantity {{good.quantity}}
+        td.sum {{good.sum}}
 </template>
 
 <script>
@@ -22,6 +22,7 @@ export default {
   },
   computed: {
     goodsFiltered() {
+      //return this.goods
       if (!this.search) return []
       return this.goods.filter(g => g.name.toLowerCase().match(this.search.toLowerCase()))
     }
@@ -38,15 +39,9 @@ export default {
 </script>
 
 <style scoped lang="sass">
-.row
-  display: flex
-  justify-content: space-around
-  align-items: center
-  border-bottom: 1px solid silver
-
-  span
-    padding: 10px
-
+table
+  td
+    border-bottom: 1px solid silver
   .date
     width: 150px
 

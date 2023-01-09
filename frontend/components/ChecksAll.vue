@@ -7,7 +7,7 @@
       div.d-flex.justify-space-between.align-center(style="cursor:pointer" @click="checkToDisplay=checkToDisplay===check.id?false:check.id")
         i {{check.date}}
         span {{check.retailPlace}} ({{check.goods.length}})
-        span {{check.sum}}
+        span {{check.sum.toFixed(2)}}
       div.table( v-if="showAll || checkToDisplay===check.id")
         table
           thead
@@ -32,6 +32,7 @@
 <script>
 export default {
   name: "ChecksAll",
+  props:['checks'],
   data() {
     return {
       checks: [],
@@ -39,9 +40,6 @@ export default {
       checkToDisplay: null,
       showAll: false
     }
-  },
-  async fetch() {
-    await this.loadData()
   },
   computed:{
     totalSum(){
@@ -54,9 +52,6 @@ export default {
     }
   },
   methods: {
-    async loadData() {
-      this.checks = await this.$axios.$get('/check/list')
-    },
   }
 }
 </script>

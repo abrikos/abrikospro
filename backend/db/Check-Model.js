@@ -11,6 +11,7 @@ const schema = new Schema({
         operator: {type: String},
         fiscalDocumentNumber: {type: Number, unique: true},
         fiscalSign: {type: Number, unique: true},
+        totalSum: {type: Number, unique: true},
         dateTime: {type: Date},
         user: {type: mongoose.Schema.Types.ObjectId, ref: 'user'},
     },
@@ -26,6 +27,7 @@ schema.statics.population = ['goods']
 
 schema.virtual('sum')
     .get(function () {
+        return this.totalSum / 100;
         return this.goods.reduce((a, b) => a + b.sum, 0)
     })
 schema.virtual('date')

@@ -8,13 +8,13 @@
       input(type="file" accept=".json" @change="upload" ref="uploadInput" hidden)
     v-tabs(v-model="tab")
       v-tab Все
-      v-tab По датам
+      v-tab По месяцам
       v-tab По продуктам
     v-tabs-items(v-model="tab")
       v-tab-item
-        ChecksAll
+        ChecksAll(:checks="checks")
       v-tab-item
-        div By date 22
+        ChecksMonthly
       v-tab-item
         GoodsAll
 </template>
@@ -22,25 +22,33 @@
 <script>
 import ChecksAll from "~/components/ChecksAll.vue";
 import GoodsAll from "~/components/GoodsAll";
+import ChecksMonthly from "~/components/ChecksMonthly";
 
 export default {
   name: "checks",
-  components: {GoodsAll, ChecksAll},
+  components: {ChecksMonthly, GoodsAll, ChecksAll},
   data() {
     return {
-      tab:2,
+      tab: 1,
+      checks:[]
     }
+  },
+  fetch(){
+    this.loadData()
   },
   methods: {
     async upload(e) {
       let formData = new FormData();
       formData.append("file", e.target.files[0]);
       await this.$axios.$put('/check/add/list', formData)
-      await this.loadData()
     },
     btnClick() {
       this.$refs.uploadInput.click()
     },
+    async loadData() {
+      this.checks = await this.$axios.$get('/check/list')
+    },
+
   }
 }
 </script>
@@ -52,7 +60,8 @@ export default {
   display: flex
   flex-direction: column
   align-items: center
+
   img
     max-height: 40px
-    //width: 230px
+//width: 230px
 </style>

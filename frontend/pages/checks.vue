@@ -9,22 +9,26 @@
     v-tabs(v-model="tab")
       v-tab Все
       v-tab По датам
+      v-tab По продуктам
     v-tabs-items(v-model="tab")
       v-tab-item
         ChecksAll
       v-tab-item
         div By date 22
+      v-tab-item
+        GoodsAll
 </template>
 
 <script>
 import ChecksAll from "~/components/ChecksAll.vue";
+import GoodsAll from "~/components/GoodsAll";
 
 export default {
   name: "checks",
-  components: {ChecksAll},
+  components: {GoodsAll, ChecksAll},
   data() {
     return {
-      tab:'all',
+      tab:2,
     }
   },
   methods: {

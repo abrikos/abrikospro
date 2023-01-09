@@ -13,6 +13,19 @@ module.exports = function (app) {
         res.send(checks)
     })
 
+    app.get('/api/check/goods', passport.isLogged, async (req, res) => {
+        const {user} = res.locals;
+        logger(user)
+        const checks = await db.check.find({user})
+            .sort({dateTime: -1})
+            .populate(db.check.population)
+        const goods = []
+        for(const check of checks){
+            goods.push(...check.goods.map(g=>({date:check.date, retailPlace:check.retailPlace, ...g._doc})))
+        }
+        res.send(goods)
+    })
+
     //63a0ea52552e5ec78a7eaffa
     async function byMonth(user) {
         const res = await db.check.aggregate([

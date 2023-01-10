@@ -29,8 +29,23 @@
  "Password change confirmation code sent to email": "Password change confirmation code sent to email",
  "New password sent to email": "New password sent to email",
  "E-mail must be valid": "E-mail must be valid",
-
  "app_description": "Aggregation JSON checks from the application \"Checking checks of the Federal Tax Service of Russia\"",
  "index_info_logged": "To get started, go to {0}",
- "index_info_guest": "You need to {0} to get started."
+ "index_info_guest": "You need to {0} to get started.",
+ "Show all": "Show all",
+ "Total": "Total",
+ "Good": "Good",
+ "Quantity": "Quantity",
+ "Price": "Price",
+ "Sum": "Sum",
+ "Year": "Year",
+ "Month": "Month",
+ "Input name of good": "Input name of good",
+ "Games": "Games",
+ "Checks": "Checks",
+ "Settings": "Settings",
+ "Upload JSON": "Upload JSON",
+ "All": "All",
+ "By month": "By month",
+ "By good": "By good"
 }

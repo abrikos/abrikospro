@@ -33,7 +33,6 @@
 	"Email exists": "Такой адрес уже зарегистрирован",
 	"Password change confirmation code sent to email": "Подтверждение о смене пароля выслано на e-mail",
 	"New password sent to email": "Новый пароль отправлени на e-mail",
-
 	"Check's aggregator": "Агрегатор чеков",
 	"Upload JSON": "Загрузить JSON",
 	"app_description": "Агрегация JSON чеков из приложения \"Проверка чеков ФНС России\"",
@@ -42,6 +41,18 @@
 	"Games": "Игры",
 	"Tic Tac Toe": "Крестики нолики",
 	"5 cells in a line wins the game": "5 ячеек в линию - победа",
-	"Rock Paper Scissors": "Камень ножницы бумага"
-
+	"Rock Paper Scissors": "Камень ножницы бумага",
+	"Show all": "Показать все",
+	"Total": "Итого",
+	"Good": "Товар",
+	"Quantity": "Количество",
+	"Price": "Цена",
+	"Sum": "Сумма",
+	"Year": "Год",
+	"Month": "Месяц",
+	"Input name of good": "Введите название товара",
+	"Checks": "Чеки",
+	"All": "Все",
+	"By month": "По месяцу",
+	"By good": "По товару"
 }

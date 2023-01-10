@@ -11,11 +11,17 @@
         <v-card-title>{{ $t('Settings') }}</v-card-title>
         <v-card-text>
           <v-text-field
+              v-if="user.email"
               outlined
               :value="user.email"
               :label="$t('Email')"
               disabled
           />
+          <v-text-field v-model="user.photo" :label="$t('Photo')" outlined>
+            <template v-slot:append v-if="user.photo">
+              <v-img :src="user.photo" max-width="30" max-height="30"/>
+            </template>
+          </v-text-field>
           <v-text-field v-model="user.password" type="password" :label="$t('Password')" outlined/>
           <v-text-field v-model="user.passwordConfirm" type="password" :label="$t('Confirm password')" outlined
                         :rules="passwordRules"/>
@@ -42,7 +48,7 @@ export default {
     return {
       valid: false,
       passwordRules: [
-        v => this.user.password === this.user.passwordConfirm || this.$t('Passwords do not match')
+        v => !this.user.password || this.user.password === this.user.passwordConfirm || this.$t('Passwords do not match')
       ],
 
     }
@@ -52,6 +58,7 @@ export default {
       if (!this.$refs.form.validate()) return console.log('Not valid')
       this.$axios.$post('/user/update', this.user)
           .then(user => {
+            this.$auth.fetchUser()
             //this.$store.dispatch('auth.js.bak/getUser')
           })
 

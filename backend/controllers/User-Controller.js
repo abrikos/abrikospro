@@ -1,3 +1,4 @@
+const logger = require('../logger')
 const passport = require('../passport');
 const md5 = require("md5");
 const moment = require("moment/moment");
@@ -7,6 +8,7 @@ module.exports = function (app) {
     const {db} = app.locals;
     //db.token.findOne({name:'14c74cd8e1298a68a26b60da43583c4f'})    .populate('user')    .then(console.log)
 
+    db.user.find().then(logger)
 
     app.post('/api/auth/login', passport.authenticate)
 
@@ -92,8 +94,9 @@ module.exports = function (app) {
 
     app.post('/api/user/update', passport.isLogged, async (req, res) => {
         const {user} = res.locals;
-        const {username, password, passwordConfirm} = req.body;
+        const {username, password, passwordConfirm, photo} = req.body;
         user.fullname = username;
+        user.photo = photo;
         if (password && passwordConfirm === password) {
             user.password = password
         }

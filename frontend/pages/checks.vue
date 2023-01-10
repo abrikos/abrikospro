@@ -17,6 +17,7 @@
         ChecksMonthly
       v-tab-item
         GoodsAll
+
 </template>
 
 <script>
@@ -55,7 +56,7 @@ export default {
 
 <style scoped lang="sass">
 .upload
-  border: 1px solid silver
+  //border: 1px solid silver
   padding: 10px
   display: flex
   flex-direction: column

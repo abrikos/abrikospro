@@ -27,7 +27,7 @@ module.exports = function (app) {
     //63a0ea52552e5ec78a7eaffa
     async function byMonth(user) {
         return  db.check.aggregate([
-            //{$match: {user:user.id}},
+            {$match: {user:user.id}},
             //{ "$unwind": "$goods" },
             {
                 $group: {

@@ -13,7 +13,7 @@
           td
             v-btn(@click="byMonth(item)" icon)
               v-icon mdi-eye
-    v-col
+    v-col(v-if="checks.length" )
       ChecksAll(:checks="checks")
 </template>
 

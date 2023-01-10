@@ -1,5 +1,6 @@
-# SWC
-## Env setup
+# Example application 
+This web application serves to demonstrate the relationship between the frontend and the backend. Backend: nodejs, express, mongodb. Frontend: nuxt 2, nuxt-auth, vuetify, pug.
+## Application setup
 add environment in .env
 ```
 API_PORT=<PORT>
@@ -11,6 +12,7 @@ MAIL_PASSWORD=<sender password>
 ADMIN_EMAIL=<admin email>>
 ADMIN_PASSW=<admin passw>
 ```
+ADMIN section - for initial application user
 ## Build Setup
 
 ```bash
@@ -31,7 +33,7 @@ $ pm2 start pm2.config.js
 $./restart.sh
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+For detailed explanation on how things work, check out the [Nuxt documentation](https://nuxtjs.org).
 
 ## Special Directories
 

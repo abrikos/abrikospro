@@ -28,7 +28,10 @@
           </v-list>
         </v-menu>
 
-        <v-btn to="/cabinet/settings" v-if="user">{{ user.email || user.fullName }}</v-btn>
+        <v-btn to="/cabinet/settings" v-if="user">
+          {{ user.email || user.fullName }} &nbsp;
+          <v-img :src="user.photo" max-width="30" max-height="30" v-if="user.photo"/>
+        </v-btn>
         <v-btn to="/user/signup" v-if="!user" id>{{$t('Signup')}}</v-btn>
         <v-btn to="/user/login" v-if="!user" id>{{$t('Login')}}</v-btn>
         <v-btn @click="logout" v-if="user" id>{{$t('Logout')}}</v-btn>

@@ -94,7 +94,14 @@ const strategies = {
         if (checkSignature(data)) {
             let user = await res.locals.db.user.findOne({externalId: data.id, strategy: 'telegram'})
             if (!user) {
-                user = await res.locals.db.user.create({externalId: data.id, strategy: 'telegram', fullName: data.first_name, photo: data.photo_url})
+                user = await res.locals.db.user.create({
+                    externalId: data.id,
+                    strategy: 'telegram',
+                    fullName: data.first_name + ' ' + data.last_name,
+                    photo: data.photo_url,
+                    email: data.username,
+                    data
+                })
             }
             return user
         } else {

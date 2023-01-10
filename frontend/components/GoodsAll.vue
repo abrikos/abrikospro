@@ -1,6 +1,6 @@
 <template lang="pug">
   div.pa-3
-    v-text-field(v-model="search" placeholder="Введите название продукта" )
+    v-text-field(v-model="search" :placeholder="$t('Input name of good')" )
     table
       tr(v-for="good of goodsFiltered")
         td.date {{good.date}}

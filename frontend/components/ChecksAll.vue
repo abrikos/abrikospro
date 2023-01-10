@@ -1,8 +1,8 @@
 <template lang="pug">
   div
     div.d-flex.justify-space-between.align-center
-      v-checkbox(v-model="showAll" label="Показать все" )
-      span.red--text Всего: &nbsp; {{totalSum}}
+      v-checkbox(v-model="showAll" :label="$t('Show all')" )
+      span.red--text {{$t('Total')}}: &nbsp; {{totalSum}}
     div.check(v-for="check of checks")
       div.d-flex.justify-space-between.align-center(style="cursor:pointer" @click="checkToDisplay=checkToDisplay===check.id?false:check.id")
         i {{check.date}}
@@ -12,10 +12,10 @@
         table
           thead
             tr
-              th Товар
-              th Кол-во
-              th Цена
-              th Сумма
+              th {{$t('Good')}}
+              th {{$t('Quantity')}}
+              th {{$t('Price')}}
+              th {{$t('Sum')}}
           tbody
             tr(v-for="good of check.goods")
               td {{good.name}}
@@ -35,7 +35,6 @@ export default {
   props:['checks'],
   data() {
     return {
-      checks: [],
       json: '',
       checkToDisplay: null,
       showAll: false

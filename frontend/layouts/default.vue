@@ -2,15 +2,13 @@
   <v-app>
     <v-app-bar fixed app dense class="main-menu">
       <v-app-bar-title>
-        <v-btn to="/">
-          {{$nuxt.context.app.head.title}}
-        </v-btn>
+          {{$t($nuxt.context.app.head.title)}}
       </v-app-bar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn id to="/game">
+<!--        <v-btn id to="/game">
           {{$t('Games')}}
-        </v-btn>
+        </v-btn>-->
         <v-btn id to="/checks" v-if="user">
           {{$t('Checks')}}
         </v-btn>

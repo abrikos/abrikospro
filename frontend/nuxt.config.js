@@ -17,7 +17,7 @@ export default {
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Abrikos HP',
+    title: 'Check\'s aggregator',
     htmlAttrs: {
       lang: 'en'
     },

@@ -1,15 +1,15 @@
 <template lang="pug">
   div
     div.upload
-      v-btn(@click="btnClick()" color="primary") Загрузить JSON
-      small Загрузка JSON чеков из приложения "Проверка чеков ФНС России"
+      v-btn(@click="btnClick()" color="primary") {{$t('Upload JSON')}}
+      small {{$t('app_description')}}
       a( href='https://play.google.com/store/apps/details?id=ru.fns.billchecker&hl=ru&gl=US&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' target="_blank")
         img(alt='Доступно в Google Play' src='/googleplay_RU.png')
       input(type="file" accept=".json" @change="upload" ref="uploadInput" hidden)
     v-tabs(v-model="tab")
-      v-tab Все
-      v-tab По месяцам
-      v-tab По продуктам
+      v-tab {{$t('All')}}
+      v-tab {{$t('By month')}}
+      v-tab {{$t('By good')}}
     v-tabs-items(v-model="tab")
       v-tab-item
         ChecksAll(:checks="checks")

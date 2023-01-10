@@ -34,6 +34,11 @@
 	"Password change confirmation code sent to email": "Подтверждение о смене пароля выслано на e-mail",
 	"New password sent to email": "Новый пароль отправлени на e-mail",
 
+	"Check's aggregator": "Агрегатор чеков",
+	"Upload JSON": "Загрузить JSON",
+	"app_description": "Агрегация JSON чеков из приложения \"Проверка чеков ФНС России\"",
+	"index_info_logged": "Для начала работы перейдите в {0}",
+	"index_info_guest": "Для начала работы необходимо выполнить {0}",
 	"Games": "Игры",
 	"Tic Tac Toe": "Крестики нолики",
 	"5 cells in a line wins the game": "5 ячеек в линию - победа",

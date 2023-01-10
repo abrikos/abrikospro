@@ -1,6 +1,6 @@
 <template lang="pug">
   v-row
-    v-col(v-for="player of players" )
+    v-col(v-for="player of players" :key="player")
       div.battle-field
         div(v-for="cell in game.data[player]" @click="doTurn(cell)" v-bind:class="{ship: !!cell.ship, border:!!cell.border}") {{cell.ship}}
       div {{game.data[player].filter(c=>c.ship)}}

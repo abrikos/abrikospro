@@ -3,9 +3,9 @@
     v-col
       table
         tr
-          th year
-          th month
-          th sum
+          th {{$t('Year')}}
+          th {{$t('Month')}}
+          th {{$t('Sum')}}
         tr(v-for="item of items" )
           td {{item.year}}
           td {{item.month}}

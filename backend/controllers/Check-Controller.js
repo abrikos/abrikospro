@@ -1,6 +1,7 @@
 const passport = require("../passport");
 const fs = require("fs");
 const logger = require('../logger')
+const mongoose = require("mongoose");
 
 module.exports = function (app) {
     const {db} = app.locals;
@@ -27,7 +28,7 @@ module.exports = function (app) {
     //63a0ea52552e5ec78a7eaffa
     async function byMonth(user) {
         return  db.check.aggregate([
-            {$match: {user:user.id}},
+            {$match: {user: mongoose.Types.ObjectId(user.id)}},
             //{ "$unwind": "$goods" },
             {
                 $group: {
@@ -48,8 +49,8 @@ module.exports = function (app) {
             {$sort: {_id: 1}}
         ])
     }
-
-
+    //byMonth({id: '6398c8fbe657a2dea2195614'}).then(r=>logger(r))
+    //db.check.deleteMany().then(console.log)
 
 
     app.get('/api/check/month', passport.isLogged, async (req, res) => {
@@ -69,6 +70,8 @@ module.exports = function (app) {
         ])
         return db.check.find({_id:{$in:ids.map(i=>i._id)}}).populate(db.check.population)
     }
+    //6398c8fbe657a2dea2195614
+
     //monthData({id: '63a0ea52552e5ec78a7eaffa'}, 2022, 3).then(logger)
 
     app.post('/api/check/month', passport.isLogged, async (req, res) => {
@@ -79,7 +82,7 @@ module.exports = function (app) {
     })
     //db.check.deleteMany().then(console.log)
     //db.check.find().populate(db.check.population).then(console.log)
-    app.put('/api/check/add/list', passport.isLogged, async (req, res) => {
+    app.put('/api/check/upload/json', passport.isLogged, async (req, res) => {
         try {
             const {user} = res.locals;
 
@@ -89,7 +92,7 @@ module.exports = function (app) {
                 checkData.owner = checkData.user;
                 checkData.user = user;
                 try {
-                    const check = await db.check.updateOne({fiscalDocumentNumber: checkData.fiscalDocumentNumber}, checkData);
+                    const check = await db.check.updateOne({fiscalDocumentNumber: checkData.fiscalDocumentNumber, user}, checkData, {upsert:true});
                     if(check.upsertedId) {
                         for (const item of checkData.items) {
                             item.check = check.upsertedId;

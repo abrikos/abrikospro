@@ -41,7 +41,8 @@ export default {
     async upload(e) {
       let formData = new FormData();
       formData.append("file", e.target.files[0]);
-      await this.$axios.$put('/check/add/list', formData)
+      await this.$axios.$put('/check/upload/json', formData)
+      this.$refs.uploadInput.value = null
     },
     btnClick() {
       this.$refs.uploadInput.click()

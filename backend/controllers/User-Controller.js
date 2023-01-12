@@ -8,7 +8,7 @@ module.exports = function (app) {
     const {db} = app.locals;
     //db.token.findOne({name:'14c74cd8e1298a68a26b60da43583c4f'})    .populate('user')    .then(console.log)
 
-    db.user.find().then(logger)
+    //db.user.find().then(r=>logger(r))
 
     app.post('/api/auth/login', passport.authenticate)
 

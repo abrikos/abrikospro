@@ -22,10 +22,11 @@
 
 <script>
 import ChecksAll from "~/components/ChecksAll.vue";
-import GoodsAll from "~/components/GoodsAll";
-import ChecksMonthly from "~/components/ChecksMonthly";
-
+import GoodsAll from "~/components/GoodsAll.vue";
+import ChecksMonthly from "~/components/ChecksMonthly.vue";
+import layout from '~/middleware/layouts'
 export default {
+  layout,
   name: "checks",
   components: {ChecksMonthly, GoodsAll, ChecksAll},
   data() {

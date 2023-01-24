@@ -8,8 +8,10 @@
 </template>
 
 <script>
+import layout from '~/middleware/layouts'
 export default {
   name: "game-index",
+  layout,
   data(){
     return {
       games:[]

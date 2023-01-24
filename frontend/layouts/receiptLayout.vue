@@ -2,24 +2,23 @@
   <v-app>
     <v-app-bar fixed app dense class="main-menu">
       <v-app-bar-title>
-        {{$t('Games')}}
+          {{$t($nuxt.context.app.head.title)}}
       </v-app-bar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <!--        <v-btn id to="/game">
-                  {{$t('Games')}}
-                </v-btn>-->
-        <v-btn id to="/games">
+<!--        <v-btn id to="/game">
           {{$t('Games')}}
+        </v-btn>-->
+        <v-btn id to="/checks" v-if="user">
+          {{$t('Checks')}}
         </v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <CommonMenu/>
-
     </v-app-bar>
     <v-main>
       <v-container>
-        <nuxt/>
+                <nuxt/>
       </v-container>
     </v-main>
     <v-footer>
@@ -33,8 +32,17 @@
 import CommonMenu from "~/components/CommonMenu.vue";
 
 export default {
-  name:'default',
   components: {CommonMenu},
+  computed: {
+    user() {
+      return this.$store.getters.getLoggedUser
+    },
+  },
+  created() {
+    //this.$vuetify.theme.isDark = true
+    //this.$axios.$get('/build-date')        .then(res => this.buildDate = res.ctime)
+  },
+
 }
 </script>
 

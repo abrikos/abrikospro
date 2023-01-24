@@ -36,8 +36,9 @@
 </template>
 
 <script>
-
+import layout from '~/middleware/layouts'
 export default {
+  layout,
   name: "cabinet-settings",
   computed: {
     user() {

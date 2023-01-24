@@ -1,64 +1,29 @@
-<template lang="pug">
-  div.index
-    h1 {{$t('app_description')}}
-    a( href='https://play.google.com/store/apps/details?id=ru.fns.billchecker&hl=ru&gl=US&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' target="_blank")
-      img(alt='Доступно в Google Play' src='/googleplay_RU.png')
-    hr
-    i18n(path="index_info_logged" tag="label" v-if="user")
-      router-link(to="/checks") {{$t('Checks')}}
-    i18n(path="index_info_guest" tag="label" v-if="!user")
-      router-link(to="/user/login") {{$t('Login')}}
-
-  //div.index-logo
-    img(src="/logo.svg")
-
+<template>
+  <div>
+    <Receipt v-if="layout === 'receiptLayout'"/>
+    <Game v-else-if="layout === 'gameLayout'"/>
+    <Default v-else/>
+  </div>
 </template>
 
 <script>
-
+import layout from '~/middleware/layouts'
+import Game from "~/pages/game/gameIndex.vue";
+import Receipt from "~/pages/receipt/receiptIndex.vue";
+import Default from "~/pages/default/defaultIndex.vue";
 
 export default {
-  auth: false,
-  computed: {
-    user() {
-      return this.$store.getters.getLoggedUser
-    },
-    background(){
-      return this.$vuetify.theme.isDark ? 'black' : 'white'
+  name: "index",
+  layout,
+  components:{Game,Receipt, Default},
+  computed:{
+    layout(){
+      return layout
     }
-  },
-  data() {
-    return {
-      form: {},
-      list: [],
-      departments: []
-    }
-  },
-
-  methods: {
-
-  },
-  created() {
-
   }
-
 }
 </script>
 
-<style lang="sass">
-.index
-  text-align: center
-  img
-    width: 200px
+<style scoped>
 
-//img
-  height: 70vh
-.index-logo
-  //border: 1px solid red
-  //background: v-bind(background)
-  width: 100%
-  height: 80vh
-  display: flex
-  align-items: center
-  justify-content: center
 </style>

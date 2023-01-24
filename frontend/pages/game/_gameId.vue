@@ -12,8 +12,10 @@
 <script>
 import TicTacToe from "~/components/games/TicTacToe.vue";
 import SeaBattle from "~/components/games/SeaBattle.vue";
+import layout from '~/middleware/layouts'
 
 export default {
+  layout,
   name: "gameById",
   components: {SeaBattle, TicTacToe},
   data() {

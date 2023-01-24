@@ -33,7 +33,6 @@
 import CommonMenu from "~/components/CommonMenu.vue";
 
 export default {
-  name:'default',
   components: {CommonMenu},
 }
 </script>

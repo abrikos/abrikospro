@@ -1,12 +1,12 @@
 <template>
-  <v-app>
-    <nuxt/>
-  </v-app>
+  <div>
+    Default index
+  </div>
 </template>
 
 <script>
 export default {
-  name: "pdf"
+  name: "defaultIndex"
 }
 </script>
 

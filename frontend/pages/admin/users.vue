@@ -40,7 +40,9 @@
 </template>
 
 <script>
+import layout from '~/middleware/layouts'
 export default {
+  layout,
   name: "users",
   data() {
     return {

@@ -2,16 +2,13 @@
   <v-app>
     <v-app-bar fixed app dense class="main-menu">
       <v-app-bar-title>
-        {{$t('Games')}}
+        {{title}}
       </v-app-bar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <!--        <v-btn id to="/game">
                   {{$t('Games')}}
                 </v-btn>-->
-        <v-btn id to="/games">
-          {{$t('Games')}}
-        </v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <CommonMenu/>
@@ -34,6 +31,17 @@ import CommonMenu from "~/components/CommonMenu.vue";
 
 export default {
   components: {CommonMenu},
+  head() {
+    return {
+      title: this.title
+    };
+  },
+  computed:{
+    title(){
+      return this.$t("Games")
+    },
+  }
+
 }
 </script>
 

@@ -1,8 +1,8 @@
 <template>
-  <v-app>
+  <v-app >
     <v-app-bar fixed app dense class="main-menu">
       <v-app-bar-title>
-          {{$t($nuxt.context.app.head.title)}}
+          {{title}}
       </v-app-bar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
@@ -28,12 +28,22 @@
   </v-app>
 </template>
 
+
 <script>
 import CommonMenu from "~/components/CommonMenu.vue";
 
+
 export default {
+  head() {
+    return {
+      title: this.title
+    };
+  },
   components: {CommonMenu},
   computed: {
+    title(){
+      return 'Агрегатор чеков'
+    },
     user() {
       return this.$store.getters.getLoggedUser
     },

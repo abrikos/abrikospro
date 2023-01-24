@@ -6,12 +6,6 @@
       </v-app-bar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <!--        <v-btn id to="/game">
-                  {{$t('Games')}}
-                </v-btn>-->
-        <v-btn id to="/games">
-          {{$t('Games')}}
-        </v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <CommonMenu/>

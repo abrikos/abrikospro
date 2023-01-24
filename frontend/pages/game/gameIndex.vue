@@ -1,6 +1,5 @@
 <template>
   <div>
-    GAMES
     <div v-for="(game,i) of games" :key="i">
       <span class="link" @click="goTo(game)">{{$t(game.label)}}</span>
     </div>

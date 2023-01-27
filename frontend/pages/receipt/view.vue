@@ -12,11 +12,11 @@
       v-tab {{$t('All')}}
     v-tabs-items(v-model="tab")
       v-tab-item
-        ChecksAll(:checks="checks")
-      v-tab-item
         ChecksMonthly
       v-tab-item
         GoodsAll
+      v-tab-item
+        ChecksAll(:checks="checks")
 
 </template>
 

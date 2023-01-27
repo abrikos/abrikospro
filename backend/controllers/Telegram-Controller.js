@@ -8,6 +8,7 @@ module.exports = function (app) {
     //db.check.deleteMany().then(console.log)
     //db.check.findOne().populate(db.check.population).then(console.log)
 
+    if(false)
     bot.on('message', async (msg) => {
         try {
             const user = await db.user.findOne({externalId: msg.from.id})

@@ -1,6 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 //const axios = require('axios');
-const bot = new TelegramBot(process.env.BOT_TOKEN, {polling: true});
+//const bot = new TelegramBot(process.env.BOT_TOKEN, {polling: true});
 const logger = require('../logger')
 
 module.exports = function (app) {
@@ -8,8 +8,7 @@ module.exports = function (app) {
     //db.check.deleteMany().then(console.log)
     //db.check.findOne().populate(db.check.population).then(console.log)
 
-    if(false)
-    bot.on('message', async (msg) => {
+  /*  bot.on('message', async (msg) => {
         try {
             const user = await db.user.findOne({externalId: msg.from.id})
             if (!user) {
@@ -41,5 +40,5 @@ module.exports = function (app) {
     app.get('/api/telegram/bot-info', (req, res) => {
         bot.getMe().then(state => res.send(state))
     })
-
+*/
 }

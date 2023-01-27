@@ -25,9 +25,10 @@
 </template>
 
 <script>
-
+import layout from '~/middleware/layouts'
 export default {
   name: "SignUp",
+  layout,
   auth: false,
   data() {
     const form = window?.location.host === 'test.abrikos.pro' ? {

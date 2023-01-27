@@ -28,11 +28,12 @@
 </template>
 
 <script>
-
+import layout from '~/middleware/layouts'
 import LoginTelegram from "~/components/LoginTelegram.vue";
 
 export default {
   name: "login",
+  layout,
   components: {LoginTelegram},
   auth: false,
   data() {

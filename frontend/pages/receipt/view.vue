@@ -7,9 +7,9 @@
         img(alt='Доступно в Google Play' src='/googleplay_RU.png')
       input(type="file" accept=".json" @change="upload" ref="uploadInput" hidden)
     v-tabs(v-model="tab")
-      v-tab {{$t('All')}}
       v-tab {{$t('By month')}}
       v-tab {{$t('By good')}}
+      v-tab {{$t('All')}}
     v-tabs-items(v-model="tab")
       v-tab-item
         ChecksAll(:checks="checks")

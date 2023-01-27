@@ -23,13 +23,14 @@
     <v-btn icon @click="switchTheme">
       <v-icon>mdi-theme-light-dark</v-icon>
     </v-btn>
-    <LangSwitcher/>
+    <LangSwitcher v-if="!noTranslate"/>
   </v-toolbar-items>
 </template>
 
 <script>
 export default {
   name: "CommonMenu",
+  props:['noTranslate'],
   computed: {
     user() {
       return this.$store.getters.getLoggedUser

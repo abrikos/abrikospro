@@ -5,7 +5,7 @@
       img(alt='Доступно в Google Play' src='/googleplay_RU.png')
     hr
     i18n(path="index_info_logged" tag="label" v-if="user")
-      router-link(to="/checks") {{$t('Checks')}}
+      router-link(to="/receipt/view") {{$t('Checks')}}
     i18n(path="index_info_guest" tag="label" v-if="!user")
       router-link(to="/user/login") {{$t('Login')}}
 

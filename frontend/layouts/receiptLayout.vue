@@ -9,12 +9,12 @@
 <!--        <v-btn id to="/game">
           {{$t('Games')}}
         </v-btn>-->
-        <v-btn id to="/checks" v-if="user">
-          {{$t('Checks')}}
+        <v-btn id to="/receipt/view" v-if="user">
+          {{$t('Receipts')}}
         </v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
-      <CommonMenu/>
+      <CommonMenu noTranslate="1"/>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -49,6 +49,7 @@ export default {
     },
   },
   created() {
+    this.$i18n.setLocale('ru')
     //this.$vuetify.theme.isDark = true
     //this.$axios.$get('/build-date')        .then(res => this.buildDate = res.ctime)
   },

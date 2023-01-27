@@ -1,6 +1,6 @@
 <template>
-  <v-app>
-    <v-app-bar fixed app dense class="main-menu">
+  <v-app >
+    <v-app-bar fixed app dense>
       <v-app-bar-title>
         {{title}}
       </v-app-bar-title>
@@ -11,10 +11,14 @@
                 </v-btn>-->
       </v-toolbar-items>
       <v-spacer></v-spacer>
+      <v-btn icon to="/">
+        <v-icon>mdi-nintendo-game-boy</v-icon>
+      </v-btn>
+      <v-spacer></v-spacer>
       <CommonMenu/>
 
     </v-app-bar>
-    <v-main>
+    <v-main  class="gameField">
       <v-container>
         <nuxt/>
       </v-container>
@@ -46,5 +50,6 @@ export default {
 </script>
 
 <style lang="sass">
-
+body
+  background-color: #6dbe48
 </style>

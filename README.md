@@ -26,6 +26,8 @@ MAIL_PASSWORD=<sender password>
 ADMIN_EMAIL=<admin email>>
 ADMIN_PASSW=<admin passw>
 ```
+MAIL_... служит для процедур восстановления пароля зарегистрированных пользователей
+
 ADMIN_... служит для создания главного администратора
 ## Build Setup
 

@@ -1,7 +1,21 @@
-# Example application 
-This web application serves to demonstrate the relationship between the frontend and the backend. Backend: nodejs, express, mongodb. Frontend: nuxt 2, nuxt-auth, vuetify, pug.
-## Application setup
-add environment in .env
+# Агрегация кассовых чеков  
+Приложение служит для анализа информации из кассовых чеков. 
+Агрегация по месяцам позволяет наблюдать ежемесячные расходы.
+Поиск по товарам позволяет наблюдать изменения цен на определенные товары.
+Ввод чеков производится путем загрузки JSON файла полученного из приложения
+"Проверка чеков ФНС России"
+https://play.google.com/store/apps/details?id=ru.fns.billchecker
+
+Для доступа к своим чекам необходимо пройти процедуру аутентификации
+
+Репозиторий демонстрирует способы взаимодействия 
+frontend и backend web-приложения на основе технологий 
+nodejs, monogodb, nuxt, vuetify, pug
+
+По всем вопросам обращаться me@abrikos.pro 
+
+## Установка приложения на собственном сервере
+Создать файл переменных окружения .env
 ```
 API_PORT=<PORT>
 MONGODB_URI=mongodb://localhost:27017/<DB-NAME>
@@ -12,7 +26,7 @@ MAIL_PASSWORD=<sender password>
 ADMIN_EMAIL=<admin email>>
 ADMIN_PASSW=<admin passw>
 ```
-ADMIN section - for initial application user
+ADMIN_... служит для создания главного администратора
 ## Build Setup
 
 ```bash

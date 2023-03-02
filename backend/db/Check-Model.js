@@ -30,6 +30,11 @@ schema.virtual('sum')
         return this.totalSum / 100;
         return this.goods.reduce((a, b) => a + b.sum, 0)
     })
+schema.virtual('totalSumHuman')
+    .get(function () {
+        return 9999
+        return this.totalSum.toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+    })
 schema.virtual('date')
     .get(function () {
         return moment(this.dateTime).format('YYYY-MM-DD HH:mm')

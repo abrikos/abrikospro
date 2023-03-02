@@ -9,7 +9,7 @@
         tr(v-for="item of items" )
           td {{item.year}}
           td {{item.month}}
-          td {{item.totalSum.toFixed(2)}}
+          td {{item.totalSum.toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')}}
           td
             v-btn(@click="byMonth(item)" icon)
               v-icon mdi-eye

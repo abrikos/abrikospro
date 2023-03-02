@@ -31,7 +31,7 @@ export default {
   components: {ChecksMonthly, GoodsAll, ChecksAll},
   data() {
     return {
-      tab: 1,
+      tab: 0,
       checks:[]
     }
   },

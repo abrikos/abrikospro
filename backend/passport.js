@@ -1,4 +1,4 @@
-const md5 = require('md5')
+const md5 = require('sha2')
 const moment = require('moment')
 const crypto = require("crypto");
 const accessTokenName = 'auth._token.local'

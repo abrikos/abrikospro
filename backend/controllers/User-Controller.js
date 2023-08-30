@@ -1,6 +1,6 @@
 const logger = require('../logger')
 const passport = require('../passport');
-const md5 = require("md5");
+const md5 = require("../md5");
 const moment = require("moment/moment");
 const mailer = require('../mailer');
 

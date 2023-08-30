@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const md5 = require("md5");
+const md5 = require("../md5");
 const moment = require("moment");
 const Schema = mongoose.Schema;
 const name = 'user';

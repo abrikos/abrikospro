@@ -60,6 +60,7 @@ module.exports = function (app) {
             const passwd = user.password = md5(moment().unix()).substr(0, 5)
             user.save()
             user.resetCode = '';
+            console.log(user.email)
             await mailer.sendMail({
                 from: process.env.MAIL_USER,
                 to: user.email,
@@ -80,6 +81,7 @@ module.exports = function (app) {
             found.resetCode = md5(moment().unix());
             found.save()
             const site = 'https://' + req.get('host') + '/api/user/confirm-reset/' + found.resetCode
+            console.log(found.email, email)
             await mailer.sendMail({
                 from: process.env.MAIL_USER,
                 to: email,

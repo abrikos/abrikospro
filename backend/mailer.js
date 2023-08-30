@@ -1,7 +1,7 @@
 require('dotenv').config();
 const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
-    host: 'smtp.yandex.ru',
+    host: 'smtp.mail.ru',
     port: 465,
     secure: true,
     auth: {

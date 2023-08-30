@@ -20,7 +20,7 @@ module.exports = function (app) {
             .populate(db.check.population)
         const goods = []
         for(const check of checks){
-            goods.push(...check.goods.map(g=>({date:check.date, retailPlace:check.retailPlace, ...g._doc})))
+            goods.push(...check.goods.map(g=>({date:check.date, retailPlace:check.retailPlace, ...g._doc, sum:g.sum})))
         }
         res.send(goods)
     })

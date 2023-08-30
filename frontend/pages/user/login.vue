@@ -39,7 +39,7 @@ export default {
   data() {
     const login = window?.location.host === 'test.abrikos.pro' ? {
       email: 'abrikoz@gmail.com',
-      password: '123',
+      password: 'd7dac',
     } : {}
     return {
       name: '',

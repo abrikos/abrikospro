@@ -1,6 +1,8 @@
 <template lang="pug">
   div.pa-3
     v-text-field(v-model="search" :placeholder="$t('Input name of good')" )
+    div {{$t('Sum')}}:
+        span(style="color:red") &nbsp; {{sumFiltered}}
     table
       tr(v-for="good of goodsFiltered")
         td.date {{good.date}}
@@ -25,6 +27,9 @@ export default {
       //return this.goods
       if (!this.search) return []
       return this.goods.filter(g => g.name.toLowerCase().match(this.search.toLowerCase()))
+    },
+    sumFiltered(){
+        return this.goodsFiltered.map(g=>g.sum).reduce((partialSum, a) => partialSum + a, 0).toFixed(2)
     }
   },
   created() {

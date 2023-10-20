@@ -3,6 +3,16 @@
     v-text-field(v-model="search" :placeholder="$t('Input name of good')" )
     div {{$t('Sum')}}:
         span(style="color:red") &nbsp; {{sumFiltered}}
+    div#list
+        div(v-for="good of goodsFiltered").good
+            div.date {{good.date}}
+            div.retailPlace {{good.retailPlace}}
+            div.name
+                strong {{good.name}}
+            div.flex
+                div.price {{good.price}}
+                div.quantity {{good.quantity}}
+                div.sum {{good.sum}}
     table
       tr(v-for="good of goodsFiltered")
         td.date {{good.date}}
@@ -44,6 +54,24 @@ export default {
 </script>
 
 <style scoped lang="sass">
+.flex
+    display: flex
+    justify-content: space-between
+div#list
+    .good
+        border: 1px solid silver
+        padding: 2px
+        margin-bottom: 2px
+    .date
+        text-align: right
+        font-size: .8em
+
+@media only screen and (max-width: 600px)
+    table
+        display: none
+@media only screen and (min-width: 600px)
+    div#list
+        display: none
 table
   td
     border-bottom: 1px solid silver

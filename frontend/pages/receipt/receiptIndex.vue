@@ -1,11 +1,6 @@
 <template lang="pug">
   div.index
     h1 Агрегатор кассовых чеков
-    div Приложение служит для анализа информации из кассовых чеков.
-      div Агрегация по месяцам позволяет наблюдать ежемесячные расходы.
-      div Поиск по товарам позволяет наблюдать изменения цен на определенные товары.
-      div Ввод чеков производится путем загрузки JSON файла полученного из приложения "Проверка чеков ФНС России"
-
     a( href='https://play.google.com/store/apps/details?id=ru.fns.billchecker&hl=ru&gl=US&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' target="_blank")
       img(alt='Доступно в Google Play' src='/googleplay_RU.png')
     br

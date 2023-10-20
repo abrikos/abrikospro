@@ -12,6 +12,12 @@
         <v-btn id to="/receipt/view" v-if="user">
           {{$t('Receipts')}}
         </v-btn>
+        <v-btn id to="/receipt/upload">
+          {{$t('Upload')}}
+        </v-btn>
+        <v-btn id to="/receipt/about">
+          {{$t('About')}}
+        </v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <CommonMenu noTranslate="1"/>
@@ -22,7 +28,11 @@
       </v-container>
     </v-main>
     <v-footer>
-      Abrikos
+        <small> {{$t('app_description')}}</small>
+        <a href='https://play.google.com/store/apps/details?id=ru.fns.billchecker&hl=ru&gl=US&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' target="_blank">
+            <img alt='Доступно в Google Play' src='/googleplay_RU.png' width="200"/>
+        </a>
+
     </v-footer>
     <SnackBar/>
   </v-app>

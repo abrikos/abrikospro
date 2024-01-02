@@ -56,6 +56,7 @@ v-app
                 v-col(cols="2")
                     v-list
                         v-list-item(to="/") Начало
+                        v-list-item(to="/fiscal/monthly" v-if="loggedUser") Чеки помесячно
                         v-list-item(to="/fiscal/list" v-if="loggedUser") Просмотр чеков
                         v-list-item(to="/fiscal/goods" v-if="loggedUser") Просмотр товаров
                         v-list-item(to="/fiscal/upload" v-if="loggedUser") Загрузка чеков

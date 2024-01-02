@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 const router = createRouter()
 
 router.get('/list', defineEventHandler(async (event) => {
@@ -16,6 +18,33 @@ router.get('/:_id', defineEventHandler(async (event) => {
     if (!user) throw createError({statusCode: 403, message: 'Доступ запрещён',})
     const {_id} = event.context.params as Record<string, string>
     return Fiscal.findOne({_id, user}).populate(Fiscal.getPopulation())
+}))
+
+router.get('/monthly', defineEventHandler(async (event) => {
+    const user = event.context.user
+    if (!user) throw createError({statusCode: 403, message: 'Доступ запрещён',})
+    const {_id} = event.context.params as Record<string, string>
+    return Fiscal.aggregate([
+        {$match: {user: new mongoose.Types.ObjectId(user.id)}},
+        //{ "$unwind": "$goods" },
+        {
+            $group: {
+                _id: {
+                    year: {$year: "$dateTime"},
+                    month: {$month: "$dateTime"},
+                },
+                testSum:{$sum:"$totalSum"},
+            }
+        },
+        {
+            $project:{
+                year: "$_id.year",
+                month: "$_id.month",
+                totalSum: {$divide: ["$testSum", 100]},
+            }
+        },
+        {$sort: {_id: -1}}
+    ])
 }))
 
 //Fiscal.syncIndexes().then(console.log)

@@ -3,7 +3,8 @@ const router = useRouter()
 const {data: fiscal} = await useNuxtApp().$GET('/fiscal/list')
 const headers = [
     {title: 'Дата', key: 'date'},
-    {title: 'Магазин', key: 'retailPlaceFull'},
+    {title: 'Магазин', key: 'retailPlace'},
+    {title: 'Адрес', key: 'retailPlaceAddress'},
     {title: 'Сумма', key: 'sumHuman', align: 'end'},
 ]
 const search=ref()

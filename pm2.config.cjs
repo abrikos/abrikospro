@@ -1,8 +1,8 @@
 require('dotenv').config();
-
+const pkginfo = require('./package.json');
 
 const {PORT, BOT_NAME, BOT_TOKEN, MAIL_PASSWORD, MAIL_USER} = process.env
-const name = `ykt-bands`
+const name = pkginfo.name
 console.log(name)
 /**
  * Конфигурация для деплоя

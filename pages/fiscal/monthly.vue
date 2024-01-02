@@ -1,14 +1,20 @@
 <script setup lang="ts">
 const {data: fiscal} = await useNuxtApp().$GET('/fiscal/monthly')
 
-const yearHeader = computed(()=>{
+const yearHeader = computed(() => {
     let year = 0
     const rows = []
-    for(const item of fiscal.value){
-        if(year!==item.year){
+    let sum = 0
+    for (const item of fiscal.value) {
+        if (year !== item.year) {
             year = item.year
-            rows.push({header:year})
+            if (sum > 0) {
+                rows.push({month: 'Итого', totalSum: sum})
+            }
+            rows.push({header: year})
+            sum = 0
         }
+        sum += item.totalSum
         rows.push(item)
     }
     return rows
@@ -25,7 +31,7 @@ table
         tr(v-for="(item,i) of yearHeader" :key="i" )
             td {{item.header}}
             td.text-right {{item.month}}
-            td.text-right {{item.totalSum?.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')}}
+            td.text-right {{item.totalSum?.toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')}}
 </template>
 
 <style scoped lang="sass">

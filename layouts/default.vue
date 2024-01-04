@@ -55,7 +55,7 @@ v-app
                         v-divider
                         v-list-subheader Игры
                         v-list-item(to="/minesweeper/list") Сапёр
-                        v-list-item(to="/minesweeper/sea-battle") Морской бой
+                        v-list-item(to="/sea-battle/list") Морской бой
 
                         v-divider
                         //v-list( v-if="loggedUser")

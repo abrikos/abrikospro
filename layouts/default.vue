@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia'; // import storeToRefs helper hook from pini
 import { useAuthStore } from '~/store/auth-store'; // import the auth store we just created
 import { useTheme } from 'vuetify'
 import type {IUser} from "~/server/models/user.model";
+import {useI18n} from "vue-i18n";
 const theme = useTheme()
 
 const { logUserOut } = useAuthStore(); // use authenticateUser action from  auth store
@@ -15,7 +16,17 @@ const title = 'Abrikos HP'
 useHead({title})
 function toggleTheme () {
     theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+    localStorage.setItem('theme', theme.global.name.value)
 }
+
+function switchLocale($i18n:any,locale:string){
+    $i18n.locale = locale
+    //$i18n.locale.value = 'ru'
+}
+
+onMounted(()=>{
+    theme.global.name.value = localStorage.getItem('theme') || 'dark'
+})
 
 const open = ['minesweeper', 'fiscal']
 
@@ -36,6 +47,12 @@ v-app
             UserAvatar(:user="loggedUser")
         v-btn(@click="logUserOut" v-if="loggedUser" append-icon="mdi-logout" ) Выйти
         v-btn(@click="toggleTheme" icon="mdi-theme-light-dark" )
+        v-btn(@click="switchLocale($i18n,'ru')") {{$i18n.locale}}
+        v-menu
+            template(v-slot:activator="{props}")
+                v-btn(icon="mdi-translate" v-bind="props")
+            v-list
+                v-list-item(v-for="locale of $i18n.availableLocales" @click="$i18n.locale = locale" :active="$i18n.locale === locale" :key="locale") {{locale}}
         //template(v-slot:prepend)
             v-app-bar-nav-icon(@click.stop="drawerLeft = !drawerLeft")
         //template(v-slot:append)
@@ -54,8 +71,8 @@ v-app
                         v-list-item(to="/") Начало
                         v-divider
                         v-list-subheader Игры
-                        v-list-item(to="/minesweeper/list") Сапёр
-                        v-list-item(to="/sea-battle/list") Морской бой
+                        v-list-item(to="/minesweeper/list") {{$t('Minesweeper')}}
+                        v-list-item(to="/sea-battle/list") {{$t('Sea battle')}}
 
                         v-divider
                         //v-list( v-if="loggedUser")

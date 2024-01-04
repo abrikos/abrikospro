@@ -15,7 +15,9 @@ router.get('/:_id', defineEventHandler(async (event) => {
     const {_id} = event.context.params as Record<string, string>
     const game = await Minesweeper.findById(_id)
     if (!game) throw createError({statusCode: 406, message: 'Game not found'})
-    //game.mines = []
+    if (!game.finished) {
+        //game.mines = []
+    }
     return game
 }))
 
@@ -35,7 +37,7 @@ function checkCell(game: IMinesweeper, idx: number) {
         game.finished = -1
         return
     }
-    if(game.mines.length + game.turns.length === game.cellsCount){
+    if (game.mines.length + game.turns.length === game.cellsCount) {
         game.finished = 1
         return;
     }

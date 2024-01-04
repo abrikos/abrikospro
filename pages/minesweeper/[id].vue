@@ -77,13 +77,14 @@ div#miner
             border: 1px solid gray
 
         .cheat
-            border: 1px dotted red
-
+            border: 1px solid red
+            //opacity: .2
         .mine-exploded
             background-color: red
             border: 1px solid gray
             background-image: v-bind('mineUrl')
-            background-size: contain
+            background-size: 80%
+            background-position: center
 
         .hidden
             border-style: solid
@@ -95,6 +96,7 @@ div#miner
 
         .mine-saved
             background-image: v-bind('mineUrl')
-            background-size: contain
+            background-size: 80%
+            background-position: center
 
 </style>

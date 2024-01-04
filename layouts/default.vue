@@ -17,6 +17,8 @@ function toggleTheme () {
     theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
 }
 
+const open = ['minesweeper', 'fiscal']
+
 </script>
 <template lang="pug">
 v-app
@@ -27,10 +29,10 @@ v-app
                 div.px-2
                     img#logo(src="/logo.svg")
                 span {{title}}
-        v-btn(to="/admin" v-if="loggedUser?.isAdmin") ADMIN
-        v-btn(to="/login" v-if="!loggedUser") Войти
-        v-btn(to="/signup" v-if="!loggedUser") Регистрация
-        v-btn(to="/cabinet" v-if="loggedUser") {{loggedUser.name}}
+        v-btn(to="/user/admin" v-if="loggedUser?.isAdmin") ADMIN
+        v-btn(to="/user/login" v-if="!loggedUser") Войти
+        v-btn(to="/user/signup" v-if="!loggedUser") Регистрация
+        v-btn(to="/user/cabinet" v-if="loggedUser") {{loggedUser.name}}
             UserAvatar(:user="loggedUser")
         v-btn(@click="logUserOut" v-if="loggedUser" append-icon="mdi-logout" ) Выйти
         v-btn(@click="toggleTheme" icon="mdi-theme-light-dark" )
@@ -43,23 +45,26 @@ v-app
             v-list-item
                 v-switch(@click="toggleTheme" v-model="nightMode" label="Ночной режим" )
 
-    //v-navigation-drawer(v-model="drawerLeft")
-        v-list
-            v-list-item(to="/") Начало
-            v-list-item(to="/fiscal/list" vif="user") Просмотр чеков
-            v-list-item(to="/fiscal/upload" vif="user") Загрузка чеков
-
 
     v-main
         v-container(fluidx)
             v-row
                 v-col(cols="2")
-                    v-list
+                    v-list(v-model:opened="open" )
                         v-list-item(to="/") Начало
-                        v-list-item(to="/fiscal/monthly" v-if="loggedUser") Чеки помесячно
-                        v-list-item(to="/fiscal/list" v-if="loggedUser") Просмотр чеков
-                        v-list-item(to="/fiscal/goods" v-if="loggedUser") Просмотр товаров
-                        v-list-item(to="/fiscal/upload" v-if="loggedUser") Загрузка чеков
+                        v-divider
+                        v-list-subheader Игры
+                        v-list-item(to="/minesweeper/list") Сапёр
+                        v-list-item(to="/minesweeper/sea-battle") Морской бой
+
+                        v-divider
+                        //v-list( v-if="loggedUser")
+                        v-list-subheader Чеки
+                        v-list-item(to="/fiscal/upload") Загрузка
+                        v-list-item(to="/fiscal/monthly") Помесячно
+                        v-list-item(to="/fiscal/list") Просмотр
+                        v-list-item(to="/fiscal/goods") Товары
+
                 v-col
                     slot
     NuxtSnackbar

@@ -30,21 +30,21 @@ export const useAuthStore = defineStore('auth', {
             if (!data.value) return
             this.loggedUser = data.value
             const router = useRouter();
-            await router.push(this.redirect || '/cabinet')
+            await router.push(this.redirect || '/user/cabinet')
         },
         async signupUser({email, password}: UserPayloadInterface) {
             // useFetch from nuxt 3
             const {data}: any = await useNuxtApp().$PUT('/user/signup', {email, password,});
             this.loggedUser = data.value
             const router = useRouter();
-            if (data.value) await router.push('/cabinet')
+            if (data.value) await router.push('/user/cabinet')
         },
         async logUserOut() {
             await useNuxtApp().$GET('/user/logout')
             this.loggedUser = undefined
             const router = useRouter();
             this.redirect = ''
-            await router.push('/login')
+            await router.push('/user/login')
 
         },
     },

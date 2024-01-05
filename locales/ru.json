@@ -1,4 +1,11 @@
 {
-  "Minesweeper": "Сапёр",
-  "Sea battle": "Морской бой"
+    "Minesweeper": "Сапёр",
+    "Sea battle": "Морской бой",
+    "Rows": "Строки",
+    "Cols": "Колонки",
+    "Percent": "Проценты",
+    "Create": "Создать",
+    "Game over": "Гейм овер",
+    "Win": "Победа",
+    "Restart": "Рестарт"
 }

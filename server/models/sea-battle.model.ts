@@ -3,40 +3,34 @@ import {IFiscal} from "~/server/models/fiscal.model";
 import {IUser} from "~/server/models/user.model";
 
 const Schema = mongoose.Schema;
-const name = 'minesweeper';
+const name = 'seabattle';
 
 export interface ICell {
     row: number
     col: number
-    idx: number
-    mine: boolean
-    open: boolean
+    ship: number
+    allow: { v: Array<number>, h: Array<number> }
 }
 
-export interface IMinesweeper {
+export interface ISeaBattle {
     id: string,
     rows: number
     cols: number
     cellsCount: number
-    percent: number
-    mines: number[]
-    turns: number[]
+    field1: object[]
+    field2: object[]
     idx: Function
     cell: Function
-    counts: Object[]
-    finished: number
+    winner: number
     createdAt: Date
 }
 
 const schema = new Schema({
         rows: {type: Number, required: true},
         cols: {type: Number, required: true},
-        percent: {type: Number, required: true},
-        mines: [{type: Number, required: true}],
-        turns: [{type: Number}],
-        counts: [{type: Object}],
-        finished: {type: Number, default: 0},
-
+        field1: [{type: Object}],
+        field2: [{type: Object}],
+        winner: {type: Number, default: 0},
     },
     {
         timestamps: {createdAt: 'createdAt'},
@@ -61,4 +55,4 @@ schema.methods.cell = function <ICell>(idx: number) {
 }
 
 
-export const Minesweeper = mongoose.model<IMinesweeper>(name, schema)
+export const SeaBattle = mongoose.model<ISeaBattle>(name, schema)

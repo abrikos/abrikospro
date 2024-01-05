@@ -50,13 +50,13 @@ const theme = 'red'
 </script>
 
 <template lang="pug">
-div.text-red(v-if="data.finished===-1") Game over
-div.text-green(v-if="data.finished===1") Win
+div.text-red(v-if="data.finished===-1") {{$t('Game over')}}
+div.text-green(v-if="data.finished===1") {{$t('Win')}}
 div#miner
     div.row(v-for="row of rowsArray" :key="row")
         div.cell(v-for="col of colsArray" :key="col" @click="cellClick(row,col)" :class="cellClass(row,col)" :style="cellStyle(row,col)") {{getCount(row,col)}}
     div
-        v-btn(@click="restart") Restart
+        v-btn(@click="restart") {{$t('Restart')}}
 </template>
 
 <style scoped lang="sass">

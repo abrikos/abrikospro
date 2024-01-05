@@ -1,31 +1,36 @@
 <script lang="ts" setup>
-import { storeToRefs } from 'pinia'; // import storeToRefs helper hook from pinia
-import { useAuthStore } from '~/store/auth-store'; // import the auth store we just created
-import { useTheme } from 'vuetify'
+import {storeToRefs} from 'pinia'; // import storeToRefs helper hook from pinia
+import {useAuthStore} from '~/store/auth-store'; // import the auth store we just created
+import {useTheme} from 'vuetify'
 import type {IUser} from "~/server/models/user.model";
 import {useI18n} from "vue-i18n";
+
+const {locale} = useI18n()
 const theme = useTheme()
 
-const { logUserOut } = useAuthStore(); // use authenticateUser action from  auth store
-const {loggedUser} = storeToRefs(useAuthStore()) as unknown as {loggedUser:IUser}
+const {logUserOut} = useAuthStore(); // use authenticateUser action from  auth store
+const {loggedUser} = storeToRefs(useAuthStore()) as unknown as { loggedUser: IUser }
 
 const drawerLeft = ref(true)
 const drawerRight = ref(false)
 const nightMode = ref(true)
 const title = 'Abrikos HP'
 useHead({title})
-function toggleTheme () {
+
+function toggleTheme() {
     theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
     localStorage.setItem('theme', theme.global.name.value)
 }
 
-function switchLocale($i18n:any,locale:string){
-    $i18n.locale = locale
+function switchLocale(l: string) {
+    locale.value = l
+    localStorage.setItem('locale', l)
     //$i18n.locale.value = 'ru'
 }
 
-onMounted(()=>{
+onMounted(() => {
     theme.global.name.value = localStorage.getItem('theme') || 'dark'
+    locale.value = localStorage.getItem('locale') || 'ru'
 })
 
 const open = ['minesweeper', 'fiscal']
@@ -47,12 +52,11 @@ v-app
             UserAvatar(:user="loggedUser")
         v-btn(@click="logUserOut" v-if="loggedUser" append-icon="mdi-logout" ) Выйти
         v-btn(@click="toggleTheme" icon="mdi-theme-light-dark" )
-        v-btn(@click="switchLocale($i18n,'ru')") {{$i18n.locale}}
         v-menu
             template(v-slot:activator="{props}")
                 v-btn(icon="mdi-translate" v-bind="props")
             v-list
-                v-list-item(v-for="locale of $i18n.availableLocales" @click="$i18n.locale = locale" :active="$i18n.locale === locale" :key="locale") {{locale}}
+                v-list-item(v-for="locale of $i18n.availableLocales" @click="switchLocale(locale)" :active="$i18n.locale === locale" :key="locale") {{locale}}
         //template(v-slot:prepend)
             v-app-bar-nav-icon(@click.stop="drawerLeft = !drawerLeft")
         //template(v-slot:append)

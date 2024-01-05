@@ -1,1 +1,11 @@
-{}
+{
+    "Minesweeper": "Minesweeper",
+    "Sea battle": "Sea battle",
+    "Rows": "Rows",
+    "Cols": "Cols",
+    "Percent": "Percent",
+    "Create": "Create",
+    "Game over": "Game over",
+    "Win": "Win",
+    "Restart": "Restart"
+}

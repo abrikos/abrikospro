@@ -15,6 +15,8 @@ function cellClass(row: number, col: number) {
     const cell = data.value.field1.find((c:ICell)=>c.row===row && c.col===col)
     if(!cell) return
     if(cell.ship) return 'ship'
+    if(cell.border) return 'border'
+
     return 'hidden'
 }
 
@@ -40,7 +42,8 @@ div.text-red(v-if="data.finished===-1") {{$t('Game over')}}
 div.text-green(v-if="data.finished===1") {{$t('Win')}}
 div#miner
     div.row(v-for="row of rowsArray" :key="row")
-        div.cell(v-for="col of colsArray" :key="col" @click="cellClick(row,col)" :class="cellClass(row,col)") {{getCell(row,col).allow}}
+        div.cell(v-for="col of colsArray" :key="col" @click="cellClick(row,col)" :class="cellClass(row,col)")
+            div {{getCell(row,col).allow.h}}  {{getCell(row,col).allow.v}}
     div
         v-btn(@click="restart") {{$t('Restart')}}
 </template>
@@ -56,5 +59,6 @@ div#miner
             border: 1px solid gray
         .ship
             background-color: green
-
+        .border
+            background-color: silver
 </style>

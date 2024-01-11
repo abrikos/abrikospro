@@ -1,6 +1,4 @@
 import mongoose from 'mongoose';
-import {IFiscal} from "~/server/models/fiscal.model";
-import {IUser} from "~/server/models/user.model";
 
 const Schema = mongoose.Schema;
 const name = 'seabattle';

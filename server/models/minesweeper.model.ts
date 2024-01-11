@@ -1,17 +1,8 @@
 import mongoose from 'mongoose';
-import {IFiscal} from "~/server/models/fiscal.model";
-import {IUser} from "~/server/models/user.model";
 
 const Schema = mongoose.Schema;
 const name = 'minesweeper';
 
-export interface ICell {
-    row: number
-    col: number
-    idx: number
-    mine: boolean
-    open: boolean
-}
 
 export interface IMinesweeper {
     id: string,
@@ -54,7 +45,7 @@ schema.methods.idx = function (row: number, col: number) {
     return row * this.rows + col
 }
 
-schema.methods.cell = function <ICell>(idx: number) {
+schema.methods.cell = function (idx: number) {
     const row = Math.floor(idx / this.cols)
     const col = idx - row * this.cols
     return {row, col}

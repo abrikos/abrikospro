@@ -16,7 +16,6 @@ function cellClass(row: number, col: number) {
     if(!cell) return
     if(cell.ship) return 'ship'
     if(cell.border) return 'border'
-
     return 'hidden'
 }
 

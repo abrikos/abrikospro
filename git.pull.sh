@@ -1,5 +1,5 @@
 #!/bin/bash
-cd ~/yktbands2
+cd ~/abrikospro
 GIT=`git pull`
 if [[ $GIT =~ "Already" ]]; then
   echo $GIT

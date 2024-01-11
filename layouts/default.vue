@@ -68,14 +68,14 @@ v-app
             v-divider
             v-list-group(value="games")
                 template(v-slot:activator="{props}")
-                    v-list-item(v-bind="props") Игры
-                v-list-item(to="/minesweeper/list") {{$t('Minesweeper')}}
-                v-list-item(v-if="config.public.devMode" to="/sea-battle/list") {{$t('Sea battle')}}
+                    v-list-item(v-bind="props" prepend-icon="mdi-nintendo-game-boy" ) Игры
+                v-list-item(to="/minesweeper/list" prepend-icon="mdi-mine" ) {{$t('Minesweeper')}}
+                v-list-item(v-if="config.public.devMode" to="/sea-battle/list" prepend-icon="mdi-ship-wheel" ) {{$t('Sea battle')}}
 
 
             v-list-group(value="fiscal" v-if="loggedUser" )
                 template(v-slot:activator="{props}")
-                    v-list-item(v-bind="props") Чеки
+                    v-list-item(v-bind="props" prepend-icon="mdi-cash-register" ) Чеки
                 v-divider
                 v-list-item(to="/fiscal/upload") Загрузка
                 v-list-item(to="/fiscal/monthly") Помесячно

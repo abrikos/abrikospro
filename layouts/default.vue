@@ -58,41 +58,34 @@ v-app
                 v-btn(icon="mdi-translate" v-bind="props")
             v-list
                 v-list-item(v-for="locale of $i18n.availableLocales" @click="switchLocale(locale)" :active="$i18n.locale === locale" :key="locale") {{locale}}
-        //template(v-slot:prepend)
+        template(v-slot:prepend)
             v-app-bar-nav-icon(@click.stop="drawerLeft = !drawerLeft")
         //template(v-slot:append)
             v-btn(icon="mdi-dots-vertical" @click.stop="drawerRight = !drawerRight")
-    //v-navigation-drawer(v-model="drawerRight" temporary location="right" )
-        v-list
-            v-list-item
-                v-switch(@click="toggleTheme" v-model="nightMode" label="Ночной режим" )
+    v-navigation-drawer(v-model="drawerLeft" :temporary="false" location="left" )
+        v-list(v-model:opened="openGroup" )
+            v-list-item(to="/" prepend-icon="mdi-home" title="Home")
+            v-divider
+            v-list-group(value="games")
+                template(v-slot:activator="{props}")
+                    v-list-item(v-bind="props") Игры
+                v-list-item(to="/minesweeper/list") {{$t('Minesweeper')}}
+                v-list-item(v-if="config.public.devMode" to="/sea-battle/list") {{$t('Sea battle')}}
+
+
+            v-list-group(value="fiscal" v-if="loggedUser" )
+                template(v-slot:activator="{props}")
+                    v-list-item(v-bind="props") Чеки
+                v-divider
+                v-list-item(to="/fiscal/upload") Загрузка
+                v-list-item(to="/fiscal/monthly") Помесячно
+                v-list-item(to="/fiscal/list") Просмотр
+                v-list-item(to="/fiscal/goods") Товары
 
 
     v-main
         v-container(fluidx)
-            v-row
-                v-col(cols="2")
-                    v-list(v-model:opened="openGroup" )
-                        v-list-item(to="/" prepend-icon="mdi-home" title="Home")
-                        v-divider
-                        v-list-group(value="games" )
-                            template(v-slot:activator="{props}")
-                                v-list-item(v-bind="props") Игры
-                            v-list-item(to="/minesweeper/list") {{$t('Minesweeper')}}
-                            v-list-item(v-if="config.public.devMode" to="/sea-battle/list") {{$t('Sea battle')}}
-
-
-                        v-list-group(value="fiscal" v-if="loggedUser" )
-                            template(v-slot:activator="{props}")
-                                v-list-item(v-bind="props") Чеки
-                            v-divider
-                            v-list-item(to="/fiscal/upload") Загрузка
-                            v-list-item(to="/fiscal/monthly") Помесячно
-                            v-list-item(to="/fiscal/list") Просмотр
-                            v-list-item(to="/fiscal/goods") Товары
-
-                v-col
-                    slot
+            slot
     NuxtSnackbar
 </template>
 

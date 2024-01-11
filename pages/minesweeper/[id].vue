@@ -9,10 +9,10 @@ const rowsArray = Array(game.value.rows).fill(null).map((_, i) => i)
 const colsArray = Array(game.value.cols).fill(null).map((_, i) => i)
 const config = useRuntimeConfig()
 
-const cellSize = 40
+const cellSize = ref(40)
 const fieldBorder = 4
 const fieldPadding = 4
-const fieldSize = cellSize * game.value.rows + fieldBorder * 2 + fieldPadding * 2
+const fieldSize = cellSize.value * game.value.rows + fieldBorder * 2 + fieldPadding * 2
 
 function idx(row: number, col: number) {
     return row * game.value.rows + col
@@ -33,7 +33,7 @@ const colors = ['', 'red', 'green', 'blue', 'yellow', 'brown', 'cyan', 'magenta'
 function cellStyle(row: number, col: number) {
     const count = game.value.counts.find((i: [number, number]) => i[0] === idx(row, col))
     const color = count ? colors[count[1]] : ''
-    const width = cellSize + 'px'
+    const width = cellSize.value + 'px'
     return {color, width, height: width}
 }
 

@@ -34,7 +34,8 @@ onMounted(() => {
     locale.value = localStorage.getItem('locale') || 'ru'
 })
 
-let openGroup = ['minesweeper', 'fiscal']
+const openGroup = ref(['games', 'fiscal'])
+
 </script>
 <template lang="pug">
 v-app
@@ -72,19 +73,23 @@ v-app
             v-row
                 v-col(cols="2")
                     v-list(v-model:opened="openGroup" )
-                        v-list-item(to="/") Начало
+                        v-list-item(to="/" prepend-icon="mdi-home" title="Home")
                         v-divider
-                        v-list-subheader Игры
-                        v-list-item(to="/minesweeper/list") {{$t('Minesweeper')}}
-                        v-list-item(v-if="config.public.devMode" to="/sea-battle/list") {{$t('Sea battle')}}
+                        v-list-group(value="games" )
+                            template(v-slot:activator="{props}")
+                                v-list-item(v-bind="props") Игры
+                            v-list-item(to="/minesweeper/list") {{$t('Minesweeper')}}
+                            v-list-item(v-if="config.public.devMode" to="/sea-battle/list") {{$t('Sea battle')}}
 
-                        v-divider
-                        //v-list( v-if="loggedUser")
-                        v-list-subheader Чеки
-                        v-list-item(to="/fiscal/upload") Загрузка
-                        v-list-item(to="/fiscal/monthly") Помесячно
-                        v-list-item(to="/fiscal/list") Просмотр
-                        v-list-item(to="/fiscal/goods") Товары
+
+                        v-list-group(value="fiscal" v-if="loggedUser" )
+                            template(v-slot:activator="{props}")
+                                v-list-item(v-bind="props") Чеки
+                            v-divider
+                            v-list-item(to="/fiscal/upload") Загрузка
+                            v-list-item(to="/fiscal/monthly") Помесячно
+                            v-list-item(to="/fiscal/list") Просмотр
+                            v-list-item(to="/fiscal/goods") Товары
 
                 v-col
                     slot

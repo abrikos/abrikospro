@@ -69,7 +69,8 @@ router.post('/:_id/turn', defineEventHandler(async (event) => {
     if (!game) throw createError({statusCode: 406, message: 'Game not found'})
     if (game.finished) throw createError({statusCode: 406, message: 'Game is over'})
     checkCell(game, idx)
-    game.save()
+    await game.save()
+    return game
 }))
 
 export default useBase('/api/minesweeper', router.handler)

@@ -77,7 +77,7 @@ div#field(:style="{width:fieldSize+'px', padding: fieldPadding+'px'}")
         div.counter {{time}}
         div#smile
             v-icon(color="yellow" ) mdi-home
-        div.counter 0
+        div.counter {{game.turn}}
     div#field-border(:style="{borderWidth:fieldBorder+'px'}")
         div#miner
             div.row(v-for="row of rowsArray" :key="row")

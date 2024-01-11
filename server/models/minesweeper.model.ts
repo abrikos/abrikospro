@@ -12,6 +12,7 @@ export interface IMinesweeper {
     percent: number
     mines: number[]
     turns: number[]
+    turn: number
     idx: Function
     cell: Function
     counts: Object[]
@@ -25,6 +26,7 @@ const schema = new Schema({
         percent: {type: Number, required: true},
         mines: [{type: Number, required: true}],
         turns: [{type: Number}],
+        turn: {type: Number, default: 0},
         counts: [{type: Object}],
         finished: {type: Number, default: 0},
 

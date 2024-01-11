@@ -7,6 +7,7 @@ const router = useRouter()
 const {data, refresh} = await useNuxtApp().$GET(`/minesweeper/${route.params.id}`)
 const rowsArray = Array(data.value.rows).fill(null).map((_, i) => i)
 const colsArray = Array(data.value.cols).fill(null).map((_, i) => i)
+const config = useRuntimeConfig()
 
 function idx(row: number, col: number) {
     return row * data.value.rows + col

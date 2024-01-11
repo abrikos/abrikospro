@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import {IMinesweeper, Minesweeper} from "~/server/models/minesweeper.model";
 
 const router = createRouter()
+const config = useRuntimeConfig()
 
 router.put('/create', defineEventHandler(async (event) => {
     const {rows, cols, percent} = await readBody(event)
@@ -15,8 +16,8 @@ router.get('/:_id', defineEventHandler(async (event) => {
     const {_id} = event.context.params as Record<string, string>
     const game = await Minesweeper.findById(_id)
     if (!game) throw createError({statusCode: 406, message: 'Game not found'})
-    if (!game.finished) {
-        //game.mines = []
+    if (!config.public.devMode && !game.finished) {
+        game.mines = []
     }
     return game
 }))

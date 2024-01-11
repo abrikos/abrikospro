@@ -34,12 +34,13 @@ export default defineNuxtConfig({
         telegramBotToken: process.env.TG_BOT_TOKEN,
         telegramBotName: process.env.TG_BOT_NAME,
         public: {
+            devMode: process.env.NODE_ENV !== 'production',
             telegramBotName: process.env.TG_BOT_NAME
         }
     },
     app: {
         head: {
-            link: [{ rel: 'icon', type: 'image/svg', href: '/logo.svg' }],
+            link: [{rel: 'icon', type: 'image/svg', href: '/logo.svg'}],
             script: [
                 //{src:'/ym.js', tagPosition:'bodyClose'}
             ]

@@ -5,6 +5,7 @@ import {useTheme} from 'vuetify'
 import type {IUser} from "~/server/models/user.model";
 import {useI18n} from "vue-i18n";
 
+const config = useRuntimeConfig()
 const {locale} = useI18n()
 const theme = useTheme()
 
@@ -34,7 +35,6 @@ onMounted(() => {
 })
 
 const open = ['minesweeper', 'fiscal']
-
 </script>
 <template lang="pug">
 v-app
@@ -76,7 +76,7 @@ v-app
                         v-divider
                         v-list-subheader Игры
                         v-list-item(to="/minesweeper/list") {{$t('Minesweeper')}}
-                        v-list-item(to="/sea-battle/list") {{$t('Sea battle')}}
+                        v-list-item(v-if="config.public.devMode" to="/sea-battle/list") {{$t('Sea battle')}}
 
                         v-divider
                         //v-list( v-if="loggedUser")

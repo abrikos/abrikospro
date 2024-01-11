@@ -68,15 +68,20 @@ function getCount(row: number, col: number) {
     return found && found[1]
 }
 
+const smileIcon = computed(() => {
+    return game.value.finished === 1 ? 'mdi-emoticon-cool-outline' : game.value.finished === -1 ? 'mdi-emoticon-dead-outline' : 'mdi-emoticon-neutral-outline'
+})
+
 </script>
 
 <template lang="pug">
-h1 Under construction
+h1 {{$t('Minesweeper')}}
 div#field(:style="{width:fieldSize+'px', padding: fieldPadding+'px'}")
     div#header(:style="{borderWidth:fieldBorder+'px'}")
         div.counter {{time}}
-        div#smile
-            v-icon(color="yellow" ) mdi-home
+        div#smile(@click="restart")
+            //v-btn(:icon="smileIcon" size="x-small" color="yellow" )
+            v-icon(color="black" ) {{smileIcon}}
         div.counter {{game.turn}}
     div#field-border(:style="{borderWidth:fieldBorder+'px'}")
         div#miner
@@ -84,8 +89,6 @@ div#field(:style="{width:fieldSize+'px', padding: fieldPadding+'px'}")
                 div.cell(v-for="col of colsArray" :key="col" @click="cellClick(row,col)" :class="cellClass(row,col)" :style="cellStyle(row,col)") {{getCount(row,col)}}
 div.text-red(v-if="game.finished===-1") {{$t('Game over')}}
 div.text-green(v-if="game.finished===1") {{$t('Win')}}
-div
-    v-btn(@click="restart") {{$t('Restart')}}
 </template>
 
 <style scoped lang="sass">
@@ -101,6 +104,16 @@ div
         border-top-color: gray
         margin-bottom: 10px
         padding: 5px
+
+        #smile
+            cursor: pointer
+            width: 50px
+            padding: 1px
+            display: flex
+            justify-content: center
+            background-color: yellow
+            border-radius: 12px
+            border: 1px solid gray
 
         .counter
             overflow: hidden

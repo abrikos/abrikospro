@@ -66,22 +66,23 @@ v-app
         v-list(v-model:opened="openGroup" )
             v-list-item(to="/" prepend-icon="mdi-home" title="Home")
             v-divider
-            v-list-group(value="games")
-                template(v-slot:activator="{props}")
-                    v-list-item(v-bind="props" prepend-icon="mdi-nintendo-game-boy" ) Игры
-                v-list-item(to="/minesweeper/list" prepend-icon="mdi-mine" ) {{$t('Minesweeper')}}
-                v-list-item(v-if="config.public.devMode" to="/sea-battle/list" prepend-icon="mdi-ship-wheel" ) {{$t('Sea battle')}}
-
-
-            v-list-group(value="fiscal" v-if="loggedUser" )
-                template(v-slot:activator="{props}")
-                    v-list-item(v-bind="props" prepend-icon="mdi-cash-register" ) Чеки
+            span
+                v-list-group(value="games")
+                    template(v-slot:activator="{props}")
+                        v-list-item(v-bind="props" prepend-icon="mdi-nintendo-game-boy" ) Игры
+                    v-list-item(to="/minesweeper/list" prepend-icon="mdi-mine" ) {{$t('Minesweeper')}}
+                    v-list-item(v-if="config.public.devMode" to="/sea-battle/list" prepend-icon="mdi-ship-wheel" ) {{$t('Sea battle')}}
                 v-divider
-                v-list-item(to="/fiscal/upload") Загрузка
-                v-list-item(to="/fiscal/monthly") Помесячно
-                v-list-item(to="/fiscal/list") Просмотр
-                v-list-item(to="/fiscal/goods") Товары
+            span(v-if="loggedUser")
+                v-list-group(value="fiscal")
+                    template(v-slot:activator="{props}")
+                        v-list-item(v-bind="props" prepend-icon="mdi-cash-register" ) Чеки
 
+                    v-list-item(to="/fiscal/upload" prepend-icon="mdi-upload-box" ) Загрузка
+                    v-list-item(to="/fiscal/monthly" prepend-icon="mdi-calendar-month" ) Помесячно
+                    v-list-item(to="/fiscal/list" prepend-icon="mdi-format-list-bulleted" ) Список
+                    v-list-item(to="/fiscal/goods" prepend-icon="mdi-basket-fill" ) Товары
+                v-divider
 
     v-main
         v-container(fluidx)

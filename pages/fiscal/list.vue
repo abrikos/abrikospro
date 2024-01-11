@@ -18,6 +18,7 @@ function goToFiscal(e:any,row:any){
 v-text-field(v-model="search" prepend-inner-icon="mdi-magnify" flat hide-details variant="solo-filled")
 v-data-table(:items="fiscal" :headers="headers" v-model:search="search" @click:row="goToFiscal" item-value="id")
 
+
 </template>
 
 <style scoped lang="sass">

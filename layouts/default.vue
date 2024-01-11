@@ -34,7 +34,7 @@ onMounted(() => {
     locale.value = localStorage.getItem('locale') || 'ru'
 })
 
-const open = ['minesweeper', 'fiscal']
+let openGroup = ['minesweeper', 'fiscal']
 </script>
 <template lang="pug">
 v-app
@@ -71,7 +71,7 @@ v-app
         v-container(fluidx)
             v-row
                 v-col(cols="2")
-                    v-list(v-model:opened="open" )
+                    v-list(v-model:opened="openGroup" )
                         v-list-item(to="/") Начало
                         v-divider
                         v-list-subheader Игры

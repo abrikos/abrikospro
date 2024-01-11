@@ -12,7 +12,7 @@ const headers = [
 
 ]
 type SortItem = InstanceType<typeof VDataTable>['sortBy']
-const sortBy: SortItem = [{key: 'fiscal.date', order: 'desc'}]
+let sortBy: SortItem = [{key: 'fiscal.date', order: 'desc'}]
 const search = ref()
 
 function goToFiscal(e: any, row: any) {

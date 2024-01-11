@@ -9,7 +9,7 @@ const tableHeaders: ReadonlyHeaders = [...headers.map(h => ({title: h, key: h}))
 
 
 const search = ref()
-const sortBy: SortItem = [{key: 'date', order: 'desc'}]
+let sortBy: SortItem = [{key: 'date', order: 'desc'}]
 
 function parseField(h:string, item:any){
     const split = h.split('.')

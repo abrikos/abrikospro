@@ -3,22 +3,24 @@ import {ICell, ISeaBattle, SeaBattle} from "~/server/models/sea-battle.model";
 const router = createRouter()
 
 function create() {
-    const rows = 6
-    const cols = 6
+    const rows = 10
+    const cols = 10
     const field1: ICell[] = []
     const field2: ICell[] = []
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
-            field1.push({row, col, ship: 0, allow: {v: null, h: null}, border: false})
-            field2.push({row, col, ship: 0, allow: {v: null, h: null}, border: false})
+            field1.push({row, col, ship: 0, allow: {v: 0, h: 0}, border: false})
+            field2.push({row, col, ship: 0, allow: {v: 0, h: 0}, border: false})
         }
     }
     const vectors = []
-    const ships2 = [[4, 2], [3, 3], [2, 4], [1, 5]]
-    const ships = [[2, 1]]
+    const ships3 = [[4, 2], [3, 3], [2, 4], [1, 4]]
+    const ships = [[4, 2], [3, 3]]
+    const ships2 = [[4, 1]]
+    const places = [[5,5], [4,4]]
     for (const ship of ships) {
         const length = ship[0]
-        for (let count = 1; count <= ship[1]; count++) {
+        for (let count = 0; count < ship[1]; count++) {
             const direction = Math.random() < 0 ? 'h' : 'v'
             let maxRow = 0
             let maxCol = 0
@@ -29,9 +31,10 @@ function create() {
                 maxRow = rows - length
                 maxCol = cols
             }
-            const allowedField = field1.filter(c => c.row < maxRow && c.col < maxCol && !c.ship)
-            //const {row, col} = allowedField.sort(() => .5 - Math.random())[0]
-            const [row, col] = [3, 3]
+            const allowedField = field1.filter(c => c.row < maxRow && c.col < maxCol && !c.ship && c.allow[direction] <= length && !c.border)
+            console.log('zzzzzzzzz', allowedField.length)
+            const {row, col} = allowedField.sort(() => .5 - Math.random())[0]
+            //const [row, col] = places[count]
             //Place ship
             for (let i = 0; i < length; i++) {
                 const cell = field1.find(c => direction === 'h' ? c.row === row && c.col === col + i : c.row === row + i && c.col === col)
@@ -49,17 +52,23 @@ function create() {
                 }
             }
             //Calc allowed ships placement
-            for (const ship of [[1, 1], [2, 2]]) {
+            for (const ship of ships) {
                 const distance = ship[0]
-                for (let border = -1; border < 2; border++) {
-                    const cellH = field1.find(c => direction === 'h' ? c.row === row + border && c.col === col - distance - 1 : c.col === col + border && c.row === row - distance - 1)
-                    if (cellH) {
+                //alongside
+                for (let along = -1; along < 2; along++) {
+                    const cellH = field1.find(c => direction === 'h' ?
+                        c.row === row + along && c.col === col - distance - 1
+                        :
+                        c.col === col + along && c.row === row - distance - 1)
+                    //console.log(cellH)
+                    if (cellH && (cellH.allow.h===0 || cellH.allow.h > (ship[0]))) {
                         cellH.allow.h = (ship[0])
                     }
                 }
-                for (let stack = -1; stack <= length + 1; stack++) {
-                    const cellV = field1.find(c => direction === 'h' ? c.row === row - distance - 1 && c.col === col + stack : c.col === col - distance - 1 && c.row === row + stack)
-                    if (cellV) {
+                //cross
+                for (let cross = -1; cross <= length + 1; cross++) {
+                    const cellV = field1.find(c => direction === 'h' ? c.row === row - distance - 1 && c.col === col + cross : c.col === col - distance - 1 && c.row === row + cross)
+                    if (cellV && (cellV.allow.h===0 || cellV.allow.v > (ship[0]))) {
                         cellV.allow.v = (ship[0])
                     }
 
@@ -71,10 +80,7 @@ function create() {
     return {rows, cols, field1, field2}
 }
 
-const f = create()
-for (const c of f.field1) {
-    //console.log(c)
-}
+//const f = create()
 
 router.put('/create', defineEventHandler(async (event) => {
     return SeaBattle.create(create())
@@ -88,7 +94,11 @@ router.get('/:_id', defineEventHandler(async (event) => {
         //game.mines = []
     }
     //return game
-    return create()
+    try {
+        return create()
+    }catch (e) {
+        throw createError({statusCode: 406, message: 'game error'})
+    }
 }))
 
 router.get('/list', defineEventHandler(async (event) => {

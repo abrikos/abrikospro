@@ -19,7 +19,7 @@ const percentItems = [5, 13, 20]
 <template lang="pug">
 v-card(width="600" )
     v-toolbar
-        v-toolbar-title {{$t('Sea battle')}}
+        v-toolbar-title {{$t('Minesweeper')}}
     v-card-text
         div.d-flex
             v-select(:items="rowItems" v-model="params.rows" :label="$t('Rows')" density="compact" )

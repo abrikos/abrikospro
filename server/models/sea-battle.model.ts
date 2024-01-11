@@ -10,7 +10,7 @@ export interface ICell {
     col: number
     ship: number
     border: boolean
-    allow: { v: number|null, h: number|null }
+    allow: { v: number, h: number }
 }
 
 export interface ISeaBattle {

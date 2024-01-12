@@ -23,5 +23,8 @@
     "New password": "New password",
     "Confirm password\" type=\"password\" :rules=\"[() => password === password2 || $t('Password and confirmation must be the same')": "Confirm password\" type=\"password\" :rules=\"[() => password === password2 || $t('Password and confirmation must be the same')",
     "Confirm password": "Confirm password",
-    "Cancel": "Cancel"
+    "Cancel": "Cancel",
+    "Avatar": "Avatar",
+    "Name": "Name",
+    "Address of ETH wallet": "Address of ETH wallet"
 }

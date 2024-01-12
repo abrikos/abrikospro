@@ -18,9 +18,12 @@
     "Cabinet": "Кабинет",
     "Profile": "Профиль",
     "Change password": "Смена пароля",
-    "Password and confirmation must be the same": "'Пароль и подтверждение должны совпадать'",
+    "Password and confirmation must be the same": "Пароль и подтверждение должны совпадать",
     "Save": "Сохранить",
     "New password": "Новый пароль",
     "Confirm password": "Подтверждение пароля",
-    "Cancel": "Отмена"
+    "Cancel": "Отмена",
+    "Avatar": "Аватар",
+    "Name": "Имя",
+    "Address of ETH wallet": "Адрес ETH кошелька"
 }

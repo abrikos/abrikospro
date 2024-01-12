@@ -15,11 +15,12 @@ const tab = ref()
 <template lang="pug">
 v-card(v-if="loggedUser")
     v-toolbar
-        v-toolbar-title  Кабинет
+        v-toolbar-title  {{$t('Cabinet')}}
 
     v-tabs(v-model="tab")
-        v-tab(:value="1" ) Профиль
-        v-tab(:value="2" ) Смена пароля
+        v-tab(:value="1" ) {{$t('Profile')}}
+            img.strategy(v-if="loggedUser.strategy" :src="`/${loggedUser.strategy}.svg`")
+        v-tab(:value="2" ) {{$t('Change password')}}
     UserProfile(v-if="tab===1" :logged-user="loggedUser")
     UserPassword(v-if="tab===2" :logged-user="loggedUser")
 

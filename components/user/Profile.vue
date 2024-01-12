@@ -32,25 +32,22 @@ function snapshot() {
 
 <template lang="pug">
 v-card(width="600" )
-    v-card-title  Профиль
-        img.strategy(v-if="loggedUser.strategy" :src="`/${loggedUser.strategy}.svg`")
     v-card-text
         v-text-field(
             v-model="loggedUser.email"
             label="Адрес почты"
             :disabled="!loggedUser.strategy"
-            :error-messages="loggedUser.strategy && loggedUser.email.match(loggedUser.strategy) ? [`Измените e-mail. Он необходим для получения сообщений в вашей группе`]:[]"
         )
-        v-text-field(v-model="loggedUser.avatarImage" label="Фото")
+        v-text-field(v-model="loggedUser.avatarImage" :label="$t('Avatar')")
             template(v-slot:append-inner)
                 //v-fade-transition
                 UserAvatar(:user="loggedUser" )
-        v-text-field(v-model="loggedUser.name" label="Имя")
-        v-text-field(v-model="loggedUser.ethAddress" label="Адрес ETH кошелька" append-inner-icon="mid-ethereum" )
+        v-text-field(v-model="loggedUser.name" :label="$t('Name')")
+        v-text-field(v-model="loggedUser.ethAddress" :label="$t('Address of ETH wallet')" append-inner-icon="mid-ethereum" )
     v-card-actions(v-if="edited")
-        v-btn(@click="submit" color="primary" ) Сохранить
+        v-btn(@click="submit" color="primary" ) {{$t('Save')}}
         v-spacer
-        v-btn(@click="reset") Сбросить
+        v-btn(@click="reset") {{$t('Cancel')}}
 </template>
 
 <style scoped lang="sass">

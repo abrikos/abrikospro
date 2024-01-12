@@ -1,6 +1,7 @@
 import {Token} from "~/server/models/token.model";
 import {User, validateEmail} from "~/server/models/user.model";
 import crypto from "crypto";
+import {eth} from "web3";
 
 //User.deleteMany().then(console.log)
 const router = createRouter()
@@ -16,10 +17,10 @@ router.post('/request-restore-password', defineEventHandler(async (event) => {
     await user.save()
     const res = await utils.sendMail({
         to: email,
-        subject: 'Восстановление пароля',
-        text: `Ссылка восстановления ${event.node.req.headers.origin}/password-restore-${user.restorePassword}`
+        subject: event.context.$t('Restore password'),
+        text: `${event.context.$t('Link for restore')} ${event.node.req.headers.origin}/password-restore-${user.restorePassword}`
     })
-    if (!res.messageId) throw createError({statusCode: 500, message: 'Ошибка отправки'})
+    if (!res.messageId) throw createError({statusCode: 500, message: event.context.$t('Send error')})
     return 1
 }))
 
@@ -33,8 +34,8 @@ router.post('/process-restore-password', defineEventHandler(async (event) => {
     await user.save()
     const res = await utils.sendMail({
         to: user.email,
-        subject: 'Новый пароль',
-        text: `Используйте этот пароль: ${password}`
+        subject: event.context.$t('New password'),
+        text: `${event.context.$t('Use this password')}: ${password}`
     })
     return 1
 }))
@@ -45,13 +46,13 @@ router.get('/checkAuth', defineEventHandler(async (event) => {
 
 router.get('/admin-all', defineEventHandler(async (event) => {
     const user = event.context.user
-    if (!user || !user.isAdmin) throw createError({statusCode: 403, message: 'Доступ запрещён',})
+    if (!user || !user.isAdmin) throw createError({statusCode: 403, message: event.context.$t('Access denied'),})
     return User.find()
 }))
 
 router.delete('/:_id', defineEventHandler(async (event) => {
     const user = event.context.user
-    if (!user || !user.isAdmin) throw createError({statusCode: 403, message: 'Доступ запрещён'})
+    if (!user || !user.isAdmin) throw createError({statusCode: 403, message: event.context.$t('Access denied')})
     const {_id} = event.context.params as Record<string, string>
     await User.findByIdAndDelete(_id)
 }))
@@ -78,37 +79,39 @@ router.put('/signup', defineEventHandler(async (event) => {
 
 router.post('/login/:strategy', defineEventHandler(async (event) => {
     const {strategy} = event.context.params as Record<string, string>
-    if (!strategies[strategy]) throw createError({statusCode: 406, message: `Ошибка в стратегии "${strategy}"`})
+    if (!strategies[strategy]) throw createError({statusCode: 406, message: `${event.context.$t('Strategy error')} "${strategy}"`})
     const user = await strategies[strategy](event);
-    if (!user) throw createError({statusCode: 401, message: 'login: Ошибка аутентификации',})
+    if (!user) throw createError({statusCode: 401, message: event.context.$t('Auth failed')})
     await utils.setAuthToken(event, user)
     return utils.adaptUser(user)
 }))
 router.get('/:_id/toggle-admin', defineEventHandler(async (event) => {
     const user = event.context.user
-    if (!user || !user.isAdmin) throw createError({statusCode: 403, message: 'Доступ запрещён'})
+    if (!user || !user.isAdmin) throw createError({statusCode: 403, message: event.context.$t('Access denied')})
     const {_id} = event.context.params as Record<string, string>
     const found = await User.findById(_id);
-    if (!found) throw createError({statusCode: 401, message: 'login: Ошибка аутентификации',})
+    if (!found) throw createError({statusCode: 401, message: event.context.$t('Auth failed')})
     found.isAdmin = !found.isAdmin
     await found.save()
 }))
 
 router.post('/update', defineEventHandler(async (event) => {
-    const {name, email, avatarImage} = await readBody(event)
+    const {name, email, avatarImage, ethAddress} = await readBody(event)
     const user = event.context.user
-    if (!user) throw createError({statusCode: 403, message: 'Доступ запрещён',})
+    if (!user) throw createError({statusCode: 403, message: event.context.$t('Access denied')})
     const found = await User.findById(user.id)
     if (!found) throw createError({statusCode: 403, message: 'STRANGE: user not found: ' + user.id,})
-    if (!validateEmail(email)) throw createError({statusCode: 403, message: 'Не верный email'})
+    if (!validateEmail(email)) throw createError({statusCode: 403, message: event.context.$t('Wrong email')})
     found.email = email
     found.name = name
+    found.ethAddress = ethAddress
     found.avatarImage = avatarImage
     try {
         await found.save()
     } catch (e: any) {
         console.error(e)
-        if (e.code === 11000) throw createError({statusCode: 406, message: 'Этот email уже занят'})
+        if (e.code === 11000) throw createError({statusCode: 406, message: event.context.$t('This email is already taken')})
+        throw createError({statusCode: 406, message: e.message})
     }
 }))
 
@@ -117,7 +120,7 @@ router.post('/update', defineEventHandler(async (event) => {
 router.post('/password', defineEventHandler(async (event) => {
     const {password} = await readBody(event)
     const user = event.context.user
-    if (!user) throw createError({statusCode: 403, message: 'Доступ запрещён',})
+    if (!user) throw createError({statusCode: 403, message: event.context.$t('Access denied'),})
     if (password) {
         user.password = password
         await user.save()

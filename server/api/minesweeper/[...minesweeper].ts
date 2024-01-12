@@ -15,7 +15,7 @@ router.put('/create', defineEventHandler(async (event) => {
 router.get('/:_id', defineEventHandler(async (event) => {
     const {_id} = event.context.params as Record<string, string>
     const game = await Minesweeper.findById(_id)
-    if (!game) throw createError({statusCode: 406, message: 'Game not found'})
+    if (!game) throw createError({statusCode: 406, message: event.context.$t('Game not found')})
     if (!config.public.devMode && !game.finished) {
         game.mines = []
     }
@@ -64,13 +64,13 @@ function checkCell(game: IMinesweeper, idx: number) {
 
 router.post('/:_id/turn', defineEventHandler(async (event) => {
     const user = event.context.user
-    //if (!user) throw createError({statusCode: 403, message: 'Доступ запрещён',})
+    //if (!user) throw createError({statusCode: 403, message: event.context.$t('Access denied'),})
 
     const {_id} = event.context.params as Record<string, string>
     const {idx} = await readBody(event)
     const game = await Minesweeper.findById(_id)
-    if (!game) throw createError({statusCode: 406, message: 'Game not found'})
-    if (game.finished) throw createError({statusCode: 406, message: 'Game is over'})
+    if (!game) throw createError({statusCode: 406, message: event.context.$t('Game not found')})
+    if (game.finished) throw createError({statusCode: 406, message: event.context.$t('Game is over')})
     checkCell(game, idx)
     game.turn++
     await game.save()

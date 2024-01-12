@@ -22,16 +22,18 @@ function toggleTheme() {
     theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
     localStorage.setItem('theme', theme.global.name.value)
 }
-
+const myLocale = useCookie('locale')
 function switchLocale(l: string) {
     locale.value = l
-    localStorage.setItem('locale', l)
+    myLocale.value = l
+    //localStorage.setItem('locale', l)
     //$i18n.locale.value = 'ru'
 }
 
 onMounted(() => {
     theme.global.name.value = localStorage.getItem('theme') || 'dark'
-    locale.value = localStorage.getItem('locale') || 'ru'
+    //locale.value = localStorage.getItem('locale') || 'ru'
+    locale.value = myLocale.value || 'ru'
 })
 
 const openGroup = ref(['games', 'fiscal'])

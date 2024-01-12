@@ -25,5 +25,16 @@
     "Cancel": "Отмена",
     "Avatar": "Аватар",
     "Name": "Имя",
-    "Address of ETH wallet": "Адрес ETH кошелька"
+    "Address of ETH wallet": "Адрес ETH кошелька",
+    "If you provide a wallet address, you can receive rewards for winnings": "Если вы укажете адрес кошелька, то сможете получать вознаграждения за выигрыш",
+    "Game not found": "Игра не найдена",
+    "Access denied": "Доступ запрещён",
+    "Game is over": "Гейм овер",
+    "Link for restore": "Ссылка для восстановления",
+    "Send error": "Ошибка отправки",
+    "Use this password": "Используйте этот пароль",
+    "Strategy error": "Ошибка стратегии",
+    "Auth failed": "Ошибка аутентификации",
+    "Wrong email": "Не верный емайл",
+    "This email is already taken": "Этот емайл уже занят"
 }

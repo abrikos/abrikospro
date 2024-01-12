@@ -23,6 +23,7 @@
     "@metamask/detect-provider": "^2.0.0",
     "@metamask/sdk": "^0.14.1",
     "@pinia/nuxt": "^0.5.1",
+    "@types/fs-extra": "^11.0.4",
     "@types/node-telegram-bot-api": "^0.64.1",
     "@types/nodemailer": "^6.4.14",
     "@types/websocket": "^1.0.10",

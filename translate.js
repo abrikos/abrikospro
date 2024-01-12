@@ -29,7 +29,7 @@ async function main() {
             new URL('./locales/ru.json', import.meta.url)
         )
     );
-    const found = [...new Set([...await crawler('pages'), ...await crawler('layouts'), ...await crawler('components'),])]
+    const found = [...new Set([...await crawler('pages'), ...await crawler('layouts'), ...await crawler('components'),...await crawler('server'),])]
     for (const word of found) {
         if (!en[word]) {
             en[word] = word

@@ -26,5 +26,16 @@
     "Cancel": "Cancel",
     "Avatar": "Avatar",
     "Name": "Name",
-    "Address of ETH wallet": "Address of ETH wallet"
+    "Address of ETH wallet": "Address of ETH wallet",
+    "If you provide a wallet address, you can receive rewards for winnings": "If you provide a wallet address, you can receive rewards for winnings",
+    "Game not found": "Game not found",
+    "Access denied": "Access denied",
+    "Game is over": "Game is over",
+    "Link for restore": "Link for restore",
+    "Send error": "Send error",
+    "Use this password": "Use this password",
+    "Strategy error": "Strategy error",
+    "Auth failed": "Auth failed",
+    "Wrong email": "Wrong email",
+    "This email is already taken": "This email is already taken"
 }

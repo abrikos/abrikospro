@@ -14,5 +14,12 @@
     "Logout": "Выход",
     "Password": "Пароль",
     "Restore password": "Восстановить пароль",
-    "Send": "Отправить"
+    "Send": "Отправить",
+    "Cabinet": "Кабинет",
+    "Profile": "Профиль",
+    "Change password": "Смена пароля",
+    "Password and confirmation must be the same": "'Пароль и подтверждение должны совпадать'",
+    "Save": "Сохранить",
+    "New password": "Новый пароль",
+    "Confirm password": "Подтверждение пароля"
 }

@@ -14,5 +14,13 @@
     "Logout": "Logout",
     "Password": "Password",
     "Restore password": "Restore password",
-    "Send": "Send"
+    "Send": "Send",
+    "Cabinet": "Cabinet",
+    "Profile": "Profile",
+    "Change password": "Change password",
+    "Password and confirmation must be the same": "Password and confirmation must be the same",
+    "Save": "Save",
+    "New password": "New password",
+    "Confirm password\" type=\"password\" :rules=\"[() => password === password2 || $t('Password and confirmation must be the same')": "Confirm password\" type=\"password\" :rules=\"[() => password === password2 || $t('Password and confirmation must be the same')",
+    "Confirm password": "Confirm password"
 }

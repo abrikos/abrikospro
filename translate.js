@@ -7,7 +7,7 @@ async function crawler(dir) {
     for (const page of listPages) {
         try {
             const content = await readFile(page, {encoding: 'utf-8'})
-            const matches = content.match(/\$t\('(.+)'\)/g)
+            const matches = content.match(/\$t\('(.+?)'\)/g)
             if (matches) {
                 found.push(...matches.map(f => f.replace("$t('", '').replace("')", '')))
             }

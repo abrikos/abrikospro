@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import mine from './mine.svg'
+import {storeToRefs} from "pinia";
+import {useAuthStore} from "~/store/auth-store";
+import type {IUser} from "~/server/models/user.model";
 
+const {loggedUser} = storeToRefs(useAuthStore()) as unknown as { loggedUser: IUser }
 const mineUrl = `url("${mine}")`
 const route = useRoute()
 const router = useRouter()
@@ -89,6 +93,10 @@ div#field(:style="{width:fieldSize+'px', padding: fieldPadding+'px'}")
                 div.cell(v-for="col of colsArray" :key="col" @click="cellClick(row,col)" :class="cellClass(row,col)" :style="cellStyle(row,col)") {{getCount(row,col)}}
 div.text-red(v-if="game.finished===-1") {{$t('Game over')}}
 div.text-green(v-if="game.finished===1") {{$t('Win')}}
+div(v-if="!loggedUser") {{$t('If you register, you can receive rewards for winnings')}}
+    UserLogin
+div(v-else-if="!loggedUser.ethAddress") {{$t('If you provide a wallet address, you can receive rewards for winnings')}}
+    NuxtLink.mx-2(to="/user/cabinet") {{$t('Cabinet')}}
 </template>
 
 <style scoped lang="sass">

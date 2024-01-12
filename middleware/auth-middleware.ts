@@ -7,6 +7,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
     if (authPages.includes(to.name as string) && !loggedUser) {
         setRedirect(to.fullPath)
         abortNavigation();
-        return navigateTo('/login');
+        return navigateTo('/user/login');
     }
 });

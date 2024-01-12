@@ -40,12 +40,11 @@ export const useAuthStore = defineStore('auth', {
             if (data.value) await router.push('/user/cabinet')
         },
         async logUserOut() {
-            await useNuxtApp().$GET('/user/logout')
-            this.loggedUser = undefined
             const router = useRouter();
             this.redirect = ''
             await router.push('/user/login')
-
+            await useNuxtApp().$GET('/user/logout')
+            this.loggedUser = undefined
         },
     },
 });

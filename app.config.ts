@@ -1,3 +1,3 @@
 export default defineAppConfig({
-    authPages: ['fiscal-upload', 'fiscal-list', 'cabinet', 'admin']
+    authPages: ['fiscal-upload', 'fiscal-list', 'user-cabinet', 'admin']
 })

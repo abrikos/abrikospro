@@ -5,7 +5,7 @@ interface UserPayloadInterface {
     email: string;
     password: string;
 }
-
+const router = useRouter();
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         loggedUser: undefined,
@@ -28,21 +28,18 @@ export const useAuthStore = defineStore('auth', {
         async authenticateUser(body: UserPayloadInterface, strategy: string) {
             const {data}: any = await useNuxtApp().$POST(`/user/login/${strategy}`, body);
             if (!data.value) return
-            this.loggedUser = data.value
-            const router = useRouter();
-            await router.push(this.redirect || '/user/cabinet')
+            return this.loggedUser = data.value
+            //await router.push(this.redirect || '/user/cabinet')
         },
         async signupUser({email, password}: UserPayloadInterface) {
             // useFetch from nuxt 3
             const {data}: any = await useNuxtApp().$PUT('/user/signup', {email, password,});
             this.loggedUser = data.value
-            const router = useRouter();
             if (data.value) await router.push('/user/cabinet')
         },
         async logUserOut() {
-            const router = useRouter();
             this.redirect = ''
-            await router.push('/user/login')
+            //await router.push('/user/login')
             await useNuxtApp().$GET('/user/logout')
             this.loggedUser = undefined
         },

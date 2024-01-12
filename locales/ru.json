@@ -7,5 +7,12 @@
     "Create": "Создать",
     "Game over": "Гейм овер",
     "Win": "Победа",
-    "Restart": "Рестарт"
+    "Restart": "Рестарт",
+    "If you register, you can receive rewards for winnings": "Если вы зарегистрируетесь, то сможете получать вознаграждения за выигрыш",
+    "Login": "Вход",
+    "Signup": "Регистрация",
+    "Logout": "Выход",
+    "Password": "Пароль",
+    "Restore password": "Восстановить пароль",
+    "Send": "Отправить"
 }

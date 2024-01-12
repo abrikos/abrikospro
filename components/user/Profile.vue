@@ -1,29 +1,28 @@
 <script setup lang="ts">
-import {useAuthStore} from '~/store/auth-store';
 import type {IUser} from "~/server/models/user.model";
-import {storeToRefs} from "pinia";
 
-const {loggedUser} = storeToRefs(useAuthStore()) as unknown as { loggedUser: IUser }
+const {loggedUser} = defineProps<{ loggedUser: IUser}>()
+
 
 async function submit() {
     await useNuxtApp().$POST('/user/update', loggedUser)
     snapshot()
 }
 
-const userSnapshot = ref<IUser>(loggedUser && JSON.parse(JSON.stringify(loggedUser.value)))
+const userSnapshot = ref<IUser>(loggedUser && JSON.parse(JSON.stringify(loggedUser)))
 const edited = computed(() => {
-    return loggedUser && JSON.stringify(userSnapshot.value) !== JSON.stringify(loggedUser.value)
+    return loggedUser && JSON.stringify(userSnapshot.value) !== JSON.stringify(loggedUser)
 })
 
 function reset() {
-    for (const key in loggedUser.value) {
+    for (const key in loggedUser) {
         loggedUser.value[key] = userSnapshot.value[key]
     }
 }
 
 function snapshot() {
-    for (const key in loggedUser.value) {
-        userSnapshot.value[key] = loggedUser.value[key]
+    for (const key in loggedUser) {
+        userSnapshot.value[key] = loggedUser[key]
     }
 }
 

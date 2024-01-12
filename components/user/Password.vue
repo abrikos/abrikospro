@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import {useAuthStore} from '~/store/auth-store';
 import type {IUser} from "~/server/models/user.model";
-import {storeToRefs} from "pinia";
-
-const {loggedUser} = storeToRefs(useAuthStore()) as unknown as { loggedUser: IUser }
+const {loggedUser} = defineProps<{ loggedUser: IUser}>()
 
 const password = ref()
 const password2 = ref()

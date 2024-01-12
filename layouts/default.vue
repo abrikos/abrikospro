@@ -47,11 +47,12 @@ v-app
                     img#logo(src="/logo.svg")
                 span {{title}}
         v-btn(to="/user/admin" v-if="loggedUser?.isAdmin") ADMIN
-        v-btn(to="/user/login" v-if="!loggedUser") Войти
-        v-btn(to="/user/signup" v-if="!loggedUser") Регистрация
+        //v-btn(to="/user/login" v-if="!loggedUser") {{$t('Login')}}
+        UserLogin
+        v-btn(to="/user/signup" v-if="!loggedUser") {{$t('Signup')}}
         v-btn(to="/user/cabinet" v-if="loggedUser") {{loggedUser.name}}
             UserAvatar(:user="loggedUser")
-        v-btn(@click="logUserOut" v-if="loggedUser" append-icon="mdi-logout" ) Выйти
+        v-btn(@click="logUserOut" v-if="loggedUser" append-icon="mdi-logout" ) {{$t('Logout')}}
         v-btn(@click="toggleTheme" icon="mdi-theme-light-dark" )
         v-menu
             template(v-slot:activator="{props}")

@@ -21,5 +21,6 @@
     "Password and confirmation must be the same": "'Пароль и подтверждение должны совпадать'",
     "Save": "Сохранить",
     "New password": "Новый пароль",
-    "Confirm password": "Подтверждение пароля"
+    "Confirm password": "Подтверждение пароля",
+    "Cancel": "Отмена"
 }

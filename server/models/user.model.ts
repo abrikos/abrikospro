@@ -1,9 +1,11 @@
 import crypto from "crypto";
 import {defineMongooseModel} from '#nuxt/mongoose'
 import mongoose from 'mongoose';
+import {isAddress} from "web3-validator";
 
 export interface IUser extends mongoose.Document {
     [key: string]: any
+
     name: string;
     avatarImage: string;
     passwordHash: string;
@@ -14,7 +16,8 @@ export interface IUser extends mongoose.Document {
     strategyId: string;
     checkPasswd: (passwd: string) => boolean
     isAdmin: boolean
-    _doc:any
+    ethAddress: string
+    _doc: any
 }
 
 
@@ -23,8 +26,9 @@ export const validateEmail = function (email: string) {
     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
 };
 
+
 function md5(str: string) {
-    return crypto.createHmac('sha256','').update(str).digest('hex')
+    return crypto.createHmac('sha256', '').update(str).digest('hex')
 }
 
 
@@ -34,7 +38,8 @@ const schema = new Schema({
     avatarImage: String,
     strategy: String,
     strategyId: String,
-    passwordHash:  String,
+    passwordHash: String,
+    ethAddress: {type: String, validate: [isAddress, 'Please fill a valid eth address']},
     email: {
         type: String,
         trim: true,

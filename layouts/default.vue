@@ -65,7 +65,7 @@ v-app
     v-navigation-drawer(v-model="drawerLeft" :temporary="false" location="left" )
         v-list(v-model:opened="openGroup" )
             v-list-item(to="/" prepend-icon="mdi-home" title="Home")
-            v-list-item(v-if="config.public.devMode" to="/dapp" prepend-icon="mdi-dollar" ) DAPP
+            v-list-item(v-if="config.public.devMode" to="/metamask" prepend-icon="mdi-dollar" ) Metamask
             v-divider
             span
                 v-list-group(value="games")

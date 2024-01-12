@@ -47,6 +47,7 @@ v-card(width="600" )
                 //v-fade-transition
                 UserAvatar(:user="loggedUser" )
         v-text-field(v-model="loggedUser.name" label="Имя")
+        v-text-field(v-model="loggedUser.ethAddress" label="Адрес ETH кошелька" append-inner-icon="mid-ethereum" )
     v-card-actions(v-if="edited")
         v-btn(@click="submit" color="primary" ) Сохранить
         v-spacer

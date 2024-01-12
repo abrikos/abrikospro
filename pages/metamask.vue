@@ -12,12 +12,12 @@ const sdk = new MetaMaskSDK({
         url: window.location.href,
         name: 'MetaMask VueJS Example Dapp',
     },
-    enableDebug: true,
+    //enableDebug: true,
     // useDeeplink: true,
     //enableAnalytics: true,
     checkInstallationImmediately: false,
     logging: {
-        developerMode: true,
+        //developerMode: true,
     },
     i18nOptions: {
         enabled: true,

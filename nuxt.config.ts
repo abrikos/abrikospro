@@ -34,9 +34,11 @@ export default defineNuxtConfig({
         mailPassword: process.env.MAIL_PASSWORD,
         telegramBotToken: process.env.TG_BOT_TOKEN,
         telegramBotName: process.env.TG_BOT_NAME,
+        ethKey: process.env.ETH_KEY,
         public: {
             devMode: process.env.NODE_ENV !== 'production',
-            telegramBotName: process.env.TG_BOT_NAME
+            telegramBotName: process.env.TG_BOT_NAME,
+            ethereumNet: process.env.ETH_NET
         }
     },
     app: {

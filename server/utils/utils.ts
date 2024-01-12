@@ -2,8 +2,14 @@ import {IUser} from "~/server/models/user.model";
 import {H3Event} from "h3";
 import {Token} from "~/server/models/token.model";
 import nodemailer from "nodemailer";
+import {Web3} from "web3";
 
-
+const config = useRuntimeConfig()
+const {ethKey, infuraKey} = config
+const {ethereumNet} = config.public
+console.log(ethereumNet)
+const web3 = new Web3(ethereumNet );
+web3.eth.getBlock().then(res=>console.log('ETH block:', res.number))
 
 const {mailUser, mailPassword, telegramBotToken} = useRuntimeConfig()
 
@@ -41,6 +47,24 @@ export default {
         return new Promise((resolve) => {
             setTimeout(resolve, ms);
         });
+    },
+    async sendEth(amount: number, to: string) {
+        const createTransaction = await web3.eth.accounts.signTransaction(
+            {
+                gas: 21000,
+                to,
+                value: web3.utils.toWei(amount, 'ether'),
+                gasPrice: await web3.eth.getGasPrice(),
+                nonce: await web3.eth.getTransactionCount(to),
+            },
+            ethKey
+        );
+        const res = await web3.eth.sendSignedTransaction(
+            createTransaction.rawTransaction
+        )
+        console.log(
+            `Transaction successful with hash: ${res.transactionHash}`
+        )
     }
 
 }

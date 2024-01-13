@@ -9,6 +9,7 @@ const mineUrl = `url("${mine}")`
 const route = useRoute()
 const router = useRouter()
 const {data: game, refresh} = await useNuxtApp().$GET(`/minesweeper/${route.params.id}`)
+const {data: prize, refresh:refreshPrize} = await useNuxtApp().$GET(`/ethereum/prize`)
 const rowsArray = Array(game.value.rows).fill(null).map((_, i) => i)
 const colsArray = Array(game.value.cols).fill(null).map((_, i) => i)
 const config = useRuntimeConfig()
@@ -59,6 +60,7 @@ async function cellClick(row: number, col: number) {
         clearInterval(timer.value)
     }
     await refresh()
+    await refreshPrize()
 }
 
 async function restart() {
@@ -93,10 +95,13 @@ div#field(:style="{width:fieldSize+'px', padding: fieldPadding+'px'}")
                 div.cell(v-for="col of colsArray" :key="col" @click="cellClick(row,col)" :class="cellClass(row,col)" :style="cellStyle(row,col)") {{getCount(row,col)}}
 div.text-red(v-if="game.finished===-1") {{$t('Game over')}}
 div.text-green(v-if="game.finished===1") {{$t('Win')}}
-div(v-if="!loggedUser") {{$t('If you register, you can receive rewards for winnings')}}
-    UserLogin
-div(v-else-if="!loggedUser.ethAddress") {{$t('If you provide a wallet address, you can receive rewards for winnings')}}
-    NuxtLink.mx-2(to="/user/cabinet") {{$t('Cabinet')}}
+div(v-if="config.public.ethereumNet")
+    div(v-if="!loggedUser") {{$t('If you register, you can receive rewards for winnings')}}
+        UserLogin
+    div(v-else-if="!loggedUser.ethAddress") {{$t('If you provide a wallet address, you can receive rewards for winnings')}}
+        NuxtLink.mx-2(to="/user/cabinet") {{$t('Cabinet')}}
+    div(v-else) {{$t('For winning you will receive')}}
+        strong.mx-1.text-green ~{{prize}} ETH
 </template>
 
 <style scoped lang="sass">

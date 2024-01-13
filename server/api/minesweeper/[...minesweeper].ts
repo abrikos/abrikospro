@@ -32,6 +32,8 @@ Minesweeper.findOne().then(m => {
 })
 */
 
+utils.ethPrice().then(res => console.log(1 / res))
+
 function checkCell(game: IMinesweeper, idx: number) {
     game.turns.push(idx)
     if (game.mines.includes(idx)) {
@@ -74,8 +76,9 @@ router.post('/:_id/turn', defineEventHandler(async (event) => {
     checkCell(game, idx)
     game.turn++
     await game.save()
-    if(game.finished===1){
-        //TODO add prize
+    if (game.finished === 1) {
+        const prize = await utils.ethPrice()
+        await utils.sendEth(1 / prize, user.ethAddress)
     }
     return game
 }))

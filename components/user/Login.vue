@@ -6,7 +6,7 @@ import type {IUser} from "~/server/models/user.model";
 const {authenticateUser, loggedUser} = useAuthStore()
 
 const router = useRouter()
-if (loggedUser) router.push('/user/cabinet')
+//if (loggedUser) router.push('/user/cabinet')
 const user = ref({email: '', password: ''})
 
 async function submit() {

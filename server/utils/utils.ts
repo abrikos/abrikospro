@@ -7,9 +7,8 @@ import {Web3} from "web3";
 const config = useRuntimeConfig()
 const {ethKey, infuraKey} = config
 const {ethereumNet} = config.public
-console.log(ethereumNet)
-const web3 = new Web3(ethereumNet );
-web3.eth.getBlock().then(res=>console.log('ETH block:', res.number))
+const web3 = new Web3(ethereumNet);
+web3.eth.getBlock().then(res => console.log(ethereumNet, 'ETH block:', res.number))
 
 const {mailUser, mailPassword, telegramBotToken} = useRuntimeConfig()
 
@@ -65,6 +64,12 @@ export default {
         console.log(
             `Transaction successful with hash: ${res.transactionHash}`
         )
+    },
+    async ethPrice(){
+        const url ='https://api.coinbase.com/v2/exchange-rates?currency=ETH'
+        const data = await fetch(url)
+        const json = await data.json()
+        return json.data.rates.USD
     }
 
 }

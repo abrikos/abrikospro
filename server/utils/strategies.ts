@@ -8,6 +8,8 @@ interface IStrategy {
     [key: string]: (event: H3Event<EventHandlerRequest>) => Promise<IUser | undefined>
 }
 
+User.findOne({strategyId:  14278211}).then(console.log)
+
 const {telegramBotToken} = useRuntimeConfig()
 export const strategies: IStrategy = {
     async password(event: H3Event) {
@@ -19,8 +21,8 @@ export const strategies: IStrategy = {
     },
     async telegram(event: H3Event) {
         const body = await readBody(event)
-        const {username, first_name, last_name, photo_url} = body
-        const email = username + '@telegram.org'
+        const {username, first_name, last_name, photo_url,id} = body
+        const email = username + id+ '@telegram.org'
         const TOKEN: BinaryLike = telegramBotToken as BinaryLike;
         const secret = crypto.createHash('sha256')
             .update(TOKEN)
@@ -45,6 +47,7 @@ export const strategies: IStrategy = {
             if (!user) {
                 //return User.updateOne({avatarImage: body.photo_url},{strategyId: body.id})
                 return User.create({
+                    strategyId: body.id,
                     strategy: 'telegram',
                     name: first_name + ' ' + last_name,
                     avatarImage: photo_url,

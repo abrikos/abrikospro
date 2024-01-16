@@ -2,10 +2,12 @@
 import { useAuthStore } from '~/store/auth-store.ts';
 const { authenticateUser } = useAuthStore(); // use authenticateUser action from  auth store
 const config = useRuntimeConfig()
+const {$event, $listen} = useNuxtApp()
 
 const holder = ref(null)
-function login(data){
-    authenticateUser(data, 'telegram')
+async function login(data){
+    const res = await authenticateUser(data, 'telegram')
+    if(res) $event('login:close')
 }
 
 onMounted(()=>{

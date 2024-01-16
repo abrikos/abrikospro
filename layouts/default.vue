@@ -50,7 +50,7 @@ v-app
                 span {{title}}
         v-btn(to="/user/admin" v-if="loggedUser?.isAdmin") ADMIN
         //v-btn(to="/user/login" v-if="!loggedUser") {{$t('Login')}}
-        UserLogin
+        UserLoginButton
         v-btn(to="/user/signup" v-if="!loggedUser") {{$t('Signup')}}
         v-btn(to="/user/cabinet" v-if="loggedUser") {{loggedUser.name}}
             UserAvatar(:user="loggedUser")
@@ -77,7 +77,7 @@ v-app
                     v-list-item(to="/minesweeper/list" prepend-icon="mdi-mine" ) {{$t('Minesweeper')}}
                     v-list-item(v-if="config.public.devMode" to="/sea-battle/list" prepend-icon="mdi-ship-wheel" ) {{$t('Sea battle')}}
                 v-divider
-            span(v-if="loggedUser")
+            span
                 v-list-group(value="fiscal")
                     template(v-slot:activator="{props}")
                         v-list-item(v-bind="props" prepend-icon="mdi-cash-register" ) Чеки

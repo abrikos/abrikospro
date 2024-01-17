@@ -8,7 +8,7 @@ interface IStrategy {
     [key: string]: (event: H3Event<EventHandlerRequest>) => Promise<IUser | undefined>
 }
 
-User.findOne({strategyId:  14278211}).then(console.log)
+//User.deleteMany().then(console.log)
 
 const {telegramBotToken} = useRuntimeConfig()
 export const strategies: IStrategy = {
@@ -49,7 +49,7 @@ export const strategies: IStrategy = {
                 return User.create({
                     strategyId: body.id,
                     strategy: 'telegram',
-                    name: first_name + ' ' + last_name,
+                    name: `${first_name}  ${last_name||''}`,
                     avatarImage: photo_url,
                     email,
                 })

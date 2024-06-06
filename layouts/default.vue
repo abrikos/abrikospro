@@ -69,12 +69,14 @@ v-app
         v-list(v-model:opened="openGroup" )
             v-list-item(to="/" prepend-icon="mdi-home" title="Home")
             v-list-item(v-if="config.public.devMode" to="/metamask" prepend-icon="mdi-dollar" ) Metamask
+            v-list-item(to="/courses" prepend-icon="mdi-dollar" ) {{$t('Courses')}}
             v-divider
             span
                 v-list-group(value="games")
                     template(v-slot:activator="{props}")
                         v-list-item(v-bind="props" prepend-icon="mdi-nintendo-game-boy" ) Игры
                     v-list-item(to="/minesweeper/list" prepend-icon="mdi-mine" ) {{$t('Minesweeper')}}
+                    v-list-item(v-if="config.public.devMode" to="/solitaire/list" prepend-icon="mdi-cards-playing-club-multiple" ) {{$t('Solitaire')}}
                     v-list-item(v-if="config.public.devMode" to="/sea-battle/list" prepend-icon="mdi-ship-wheel" ) {{$t('Sea battle')}}
                 v-divider
             span

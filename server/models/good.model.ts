@@ -11,6 +11,7 @@ export interface IGood {
     price: number
     quantity: number
     sum: number
+    deleted: boolean
     fiscal: IFiscal
     user: IUser
 
@@ -25,6 +26,7 @@ const schema = new Schema({
         name: {type: String, required: true},
         price: {type: Number, required: true},
         quantity: {type: Number, required: true},
+        deleted: {type: Boolean, default: false},
         fiscal: {type: mongoose.Schema.Types.ObjectId, ref: 'fiscal'},
         user: {type: mongoose.Schema.Types.ObjectId, ref: 'user'},
     },

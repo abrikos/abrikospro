@@ -6,6 +6,7 @@ const headers = [
     {title: 'Магазин', key: 'retailPlace'},
     {title: 'Адрес', key: 'retailPlaceAddress'},
     {title: 'Сумма', key: 'sumHuman', align: 'end'},
+    {title: 'Сумма', key: 'deleted', align: 'end'},
 ]
 const search=ref()
 

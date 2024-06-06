@@ -5,7 +5,7 @@ interface UserPayloadInterface {
     email: string;
     password: string;
 }
-const router = useRouter();
+
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         loggedUser: undefined,
@@ -32,9 +32,11 @@ export const useAuthStore = defineStore('auth', {
             //await router.push(this.redirect || '/user/cabinet')
         },
         async signupUser({email, password}: UserPayloadInterface) {
+            const router = useRouter();
             // useFetch from nuxt 3
             const {data}: any = await useNuxtApp().$PUT('/user/signup', {email, password,});
             this.loggedUser = data.value
+            console.log(router)
             if (data.value) await router.push('/user/cabinet')
         },
         async logUserOut() {

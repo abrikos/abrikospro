@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-
+import '@mdi/font/css/materialdesignicons.css'
 </script>
 <template lang="pug">
 NuxtLayout

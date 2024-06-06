@@ -5,12 +5,12 @@ const router = createRouter()
 router.get('/list', defineEventHandler(async (event) => {
     const user = event.context.user
     if (!user) throw createError({statusCode: 403, message: event.context.$t('Access denied'),})
-    return Fiscal.find({user}).sort({dateTime: -1})//.populate(Fiscal.getPopulation())
+    return Fiscal.find({user, deleted:{$ne:true}}).sort({dateTime: -1})//.populate(Fiscal.getPopulation())
 }))
 router.get('/goods', defineEventHandler(async (event) => {
     const user = event.context.user
     if (!user) throw createError({statusCode: 403, message: event.context.$t('Access denied'),})
-    return Good.find({user}).sort({name: 1}).populate(Good.getPopulation())
+    return Good.find({user, deleted:{$ne:true}}).sort({name: 1}).populate(Good.getPopulation())
 }))
 
 router.get('/:_id', defineEventHandler(async (event) => {
@@ -19,13 +19,19 @@ router.get('/:_id', defineEventHandler(async (event) => {
     const {_id} = event.context.params as Record<string, string>
     return Fiscal.findOne({_id, user}).populate(Fiscal.getPopulation())
 }))
+router.delete('/:_id', defineEventHandler(async (event) => {
+    const user = event.context.user
+    if (!user) throw createError({statusCode: 403, message: event.context.$t('Access denied'),})
+    const {_id} = event.context.params as Record<string, string>
+    return  Fiscal.updateOne({_id, user}, {deleted:true})
+}))
 
 router.get('/monthly', defineEventHandler(async (event) => {
     const user = event.context.user
     if (!user) throw createError({statusCode: 403, message: event.context.$t('Access denied'),})
     const {_id} = event.context.params as Record<string, string>
     return Fiscal.aggregate([
-        {$match: {user: new mongoose.Types.ObjectId(user.id)}},
+        {$match: {user: new mongoose.Types.ObjectId(user.id), deleted:{$ne:true}}},
         //{ "$unwind": "$goods" },
         {
             $group: {
@@ -58,6 +64,7 @@ router.post('/upload', defineEventHandler(async (event) => {
     let formData = await readMultipartFormData(event)
     if (formData) {
         const json = JSON.parse(formData[0].data.toString())
+        console.log(json)
         for (const checkImported of json) {
             const checkData = checkImported.ticket.document.receipt;
             checkData.owner = checkData.user;

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="svg2"
+   viewBox="0 0 240 336"
+   sodipodi:version="0.32"
+   version="1.0"
+   y="0"
+   x="0"
+   sodipodi:docname="cover.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   width="240"
+   height="336"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     pagecolor="#ffffff"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="2.2210527"
+     inkscape:cx="88.021326"
+     inkscape:cy="127.41706"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2"
+     width="240px" />
+  <defs
+     id="defs3">
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern10642"
+       id="pattern147"
+       patternTransform="matrix(4.3488665,-0.73468458,1.0394748,6.153035,12.368513,-28.515215)" />
+    <linearGradient
+       id="linearGradient8304">
+      <stop
+         id="stop8314"
+         stop-color="#830007"
+         offset="0" />
+      <stop
+         id="stop8316"
+         stop-color="#f00"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4853"
+       x1="2"
+       gradientUnits="userSpaceOnUse"
+       y1="63.099998"
+       gradientTransform="translate(0,-1)"
+       x2="109"
+       y2="128.7">
+      <stop
+         id="stop2062"
+         stop-color="#ebf0d0"
+         offset="0" />
+      <stop
+         id="stop2064"
+         stop-color="#ffffeb"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient8318"
+       x1="138.23"
+       xlink:href="#linearGradient8304"
+       gradientUnits="userSpaceOnUse"
+       y1="146.62"
+       gradientTransform="matrix(1.6400752,0,0,2.3022132,-13.084611,-17.992431)"
+       x2="40.855145"
+       y2="24.862442" />
+    <linearGradient
+       id="linearGradient9086"
+       x1="22.028999"
+       xlink:href="#linearGradient8304"
+       gradientUnits="userSpaceOnUse"
+       y1="17.153"
+       gradientTransform="matrix(1.6422447,0,0,2.2992631,-13.084611,-17.992431)"
+       x2="146.39999"
+       y2="140.45" />
+    <pattern
+       id="pattern10642"
+       width="14.142157"
+       patternUnits="userSpaceOnUse"
+       patternTransform="translate(15 -5)"
+       height="13.750009">
+      <g
+         id="g10644"
+         transform="translate(31.25 -2.9289)"
+         fill="#fff">
+        <rect
+           id="rect10646"
+           transform="rotate(45)"
+           height="5"
+           width="5"
+           y="21.668"
+           x="-17.526" />
+        <rect
+           id="rect10648"
+           transform="rotate(45)"
+           height="5"
+           width="5"
+           y="26.391"
+           x="-12.803" />
+        <rect
+           id="rect10650"
+           transform="rotate(45)"
+           height="5"
+           width="5"
+           y="16.668"
+           x="-12.526" />
+        <rect
+           id="rect10652"
+           transform="rotate(45)"
+           height="5"
+           width="5"
+           y="21.391"
+           x="-7.8033" />
+      </g>
+    </pattern>
+  </defs>
+  <path
+     id="path1385"
+     d="M 29.474327,1.674519 H 210.74004 c 15.60897,0 28.16527,12.864152 28.16527,28.845516 V 306.34901 c 0,15.96956 -12.5563,28.83175 -28.16527,28.83175 H 29.474327 c -15.601296,0 -28.159514,-12.86219 -28.159514,-28.83175 V 30.520035 c 0,-15.987264 12.558218,-28.8514161 28.159514,-28.8514161 z"
+     fill="url(#linearGradient8318)"
+     style="fill:url(#linearGradient8318);stroke-width:1.94317" />
+  <path
+     id="path9846"
+     d="M 29.474327,1.674519 H 210.74004 c 15.60897,0 28.16527,12.864152 28.16527,28.845516 V 306.34901 c 0,15.96956 -12.5563,28.83175 -28.16527,28.83175 H 29.474327 c -15.601296,0 -28.159514,-12.86219 -28.159514,-28.83175 V 30.520035 c 0,-15.987264 12.558218,-28.8514161 28.159514,-28.8514161 z"
+     fill="url(#pattern10642)"
+     style="display:inline;fill:url(#pattern147);stroke-width:1.94317" />
+  <path
+     id="path2154"
+     d="m 29.453207,0.44533463 c -16.24447,0 -29.338346,13.41286037 -29.338346,30.05306637 V 306.32737 c 0,16.63824 13.093876,30.11011 29.338346,30.11011 H 210.75923 c 16.24256,0 29.35563,-13.47187 29.35563,-30.11011 V 30.498401 c 0,-16.648073 -13.11307,-30.06093316 -29.35563,-30.06093316 H 29.453207 Z m 0,2.45836877 H 210.75923 c 14.95621,0 26.93653,12.2741436 26.93653,27.5946976 V 306.32737 c 0,15.32056 -11.98032,27.65174 -26.93653,27.65174 H 29.453207 c -14.956201,0 -26.938442,-12.33118 -26.938442,-27.65174 V 30.498401 c 0,-15.328421 11.982241,-27.6025644 26.938442,-27.6025644 z"
+     fill="url(#linearGradient9086)"
+     style="display:inline;fill:url(#linearGradient9086);stroke-width:1.94317" />
+  <metadata
+     id="metadata26">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Card backs: grid red</dc:title>
+        <dc:date>2009-03-23T13:59:53</dc:date>
+        <dc:description>playing card backs for the &quot;Ornamental&quot;, &quot;White&quot;, &quot;Simple&quot; and &quot;Bordered&quot; sets</dc:description>
+        <dc:source>http://openclipart.org/detail/23038/card-backs:-grid-red-by-nicubunu-23038</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>nicubunu</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>bordered deck</rdf:li>
+            <rdf:li>card</rdf:li>
+            <rdf:li>cards</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>deck</rdf:li>
+            <rdf:li>gambling</rdf:li>
+            <rdf:li>game</rdf:li>
+            <rdf:li>image</rdf:li>
+            <rdf:li>media</rdf:li>
+            <rdf:li>ornamental deck</rdf:li>
+            <rdf:li>play</rdf:li>
+            <rdf:li>playing cards</rdf:li>
+            <rdf:li>png</rdf:li>
+            <rdf:li>public domain</rdf:li>
+            <rdf:li>simple deck</rdf:li>
+            <rdf:li>svg</rdf:li>
+            <rdf:li>white deck</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

@@ -1,5 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-
 import type {NuxtPage} from "@nuxt/schema";
 
 export default defineNuxtConfig({
@@ -35,6 +34,7 @@ export default defineNuxtConfig({
         telegramBotToken: process.env.TG_BOT_TOKEN,
         telegramBotName: process.env.TG_BOT_NAME,
         ethKey: process.env.ETH_KEY,
+        goldApi: process.env.GOLD_API,
         public: {
             devMode: process.env.NODE_ENV !== 'production',
             telegramBotName: process.env.TG_BOT_NAME,
@@ -62,10 +62,14 @@ export default defineNuxtConfig({
     css: ['vuetify/lib/styles/main.sass', '~/assets/vuetify.sass'],
     vuetify: {
         /* vuetify options */
+
         vuetifyOptions: {
             theme: {
                 defaultTheme: 'dark'
-            }
+            },
+            icons: {
+                defaultSet: 'mdi', // This is already the default value - only for display purposes
+            },
             // @TODO: list all vuetify options
         },
 
@@ -73,7 +77,7 @@ export default defineNuxtConfig({
             //customVariables: ['~/assets/variables.scss'],
             /* nuxt-vuetify module options */
             treeshaking: true,
-            useIconCDN: true,
+            useIconCDN: false,
 
             /* vite-plugin-vuetify options */
             styles: 'sass',

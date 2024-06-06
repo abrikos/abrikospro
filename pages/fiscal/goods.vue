@@ -2,11 +2,12 @@
 import type {VDataTable} from 'vuetify/lib/components/index.mjs'
 
 const router = useRouter()
-const {data: fiscal} = await useNuxtApp().$GET('/fiscal/goods')
+const {data: fiscal, refresh} = await useNuxtApp().$GET('/fiscal/goods')
 const headers = [
     {title: 'Наименование', key: 'name'},
     {title: 'Кол-во', key: 'quantity', align: 'end'},
     {title: 'Цена', key: 'priceHuman', align: 'end'},
+    {title: 'Сумма', key: 'sum', align: 'end'},
     {title: 'Дата', key: 'fiscal.date', align: 'end'},
     {title: 'Магазин', key: 'fiscal.retailPlaceFull'},
 
@@ -18,6 +19,8 @@ const search = ref()
 function goToFiscal(e: any, row: any) {
     router.push(`/fiscal/view-${row.item.fiscal.id}`)
 }
+
+
 </script>
 
 <template lang="pug">

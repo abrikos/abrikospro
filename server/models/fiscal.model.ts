@@ -18,6 +18,7 @@ export interface IFiscal {
     totalSum: number
     dateTime: number
     date: string
+    deleted: boolean
     user: IUser,
     goods: IGood[]
 
@@ -36,6 +37,7 @@ const schema = new Schema({
         fiscalSign: {type: Number, unique: true},
         totalSum: {type: Number, required: true},
         dateTime: {type: Date, required: true},
+        deleted: {type: Boolean, default: false},
         user: {type: mongoose.Schema.Types.ObjectId, ref: 'user'},
     },
     {

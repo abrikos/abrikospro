@@ -1,4 +1,3 @@
-import {da} from "vuetify/locale";
 
 export default defineEventHandler(async(event) => {
     const config = useRuntimeConfig()

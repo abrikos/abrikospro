@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const router = useRouter()
-const email = ref('abrikoz@gmail.com')
+const email = ref()
 const loading = ref()
 const result = ref()
 async function submit(){

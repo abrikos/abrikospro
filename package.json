@@ -13,12 +13,12 @@
     "@invictus.codes/nuxt-vuetify": "^0.3.0",
     "@mdi/font": "^7.4.47",
     "@nuxt/devtools": "latest",
-    "nuxt": "^3.11.1",
-    "pug": "^3.0.2",
-    "sass": "^1.69.5",
-    "vue": "^3.3.10",
-    "vue-i18n": "^9.8.0",
-    "vue-router": "^4.2.5"
+    "nuxt": "^3.13.2",
+    "pug": "^3.0.3",
+    "sass": "^1.79.4",
+    "vue": "^3.5.11",
+    "vue-i18n": "^10.0.4",
+    "vue-router": "^4.4.5"
   },
   "dependencies": {
     "@metamask/detect-provider": "^2.0.0",

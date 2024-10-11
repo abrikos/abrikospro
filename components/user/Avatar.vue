@@ -7,7 +7,7 @@ try {
     const url = new URL(user.avatarImage)
     valid.value = !!url
 }catch (e) {
-    
+
 }
 </script>
 

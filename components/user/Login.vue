@@ -21,20 +21,23 @@ function closeDialog() {
 </script>
 
 <template lang="pug">
-  v-card(width="600" )
-    v-toolbar
-      v-toolbar-title {{$t('Login')}}
-      v-spacer
-      v-btn(@click="closeDialog" icon="mdi-close" )
-    v-card-text
-      v-text-field(v-model="user.email" label="Email" )
-      v-text-field(v-model="user.password" :label="$t('Password')" type="password" )
-    v-card-actions
-      v-btn(@click="submit") {{$t('Send')}}
-      LoginTelegram
-      v-spacer
-      NuxtLink(to="/user/password-restore") {{$t('Restore password')}}
-      //v-btn(@click="router.push('/password-restore')")
+q-card(width="600" )
+  q-toolbar
+    q-toolbar-title {{$t('Login')}}
+    q-space
+    q-btn(@click="closeDialog" icon="mdi-close" )
+  q-card-section
+    LoginTelegram
+  q-card-section
+    q-input(v-model="user.email" label="Email" hint="")
+    q-input(v-model="user.password" :label="$t('Password')" type="password" )
+  q-card-actions
+    q-btn(@click="submit" :flat="false" color="primary" ) {{$t('Send')}}
+  q-card-section
+    q-separator
+    q-space
+    q-btn(to="/user/signup") {{$t('Signup')}}
+    q-btn(to="/password-restore") {{$t('Restore password')}}
 
 </template>
 

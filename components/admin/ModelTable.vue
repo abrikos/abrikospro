@@ -41,14 +41,14 @@ async function additionalBtnClick(btn: any, item: any) {
 v-card
     v-card-title {{model.toUpperCase()}}
     v-card-text
-        v-text-field(v-model="search" prepend-inner-icon="mdi-magnify" flat hide-details variant="solo-filled")
+        q-input(v-model="search" prepend-inner-icon="mdi-magnify" flat hide-details variant="solo-filled")
         v-data-table(:headers="tableHeaders" :items="items" v-model:sort-by="sortBy" v-model:search="search")
             template(v-slot:item.action="{item}")
-                v-btn(icon="mdi-delete" color="red" size="x-small" @click="deleteItem(item)")
-                //v-btn(v-for="btn of buttons" :key="btn.icon" :icon="btn.icon" @click="additionalBtnClick(btn, item)")
+                q-btn(icon="mdi-delete" color="red" size="x-small" @click="deleteItem(item)")
+                //q-btn(v-for="btn of buttons" :key="btn.icon" :icon="btn.icon" @click="additionalBtnClick(btn, item)")
                 v-tooltip(location="top" v-for="btn of buttons" :key="btn.icon")
                     template(v-slot:activator="{props}")
-                        v-btn(:icon="btn.icon" @click="additionalBtnClick(btn, item)" size="small" v-bind="props")
+                        q-btn(:icon="btn.icon" @click="additionalBtnClick(btn, item)" size="small" v-bind="props")
                     span {{btn.tooltip}}
 
 </template>

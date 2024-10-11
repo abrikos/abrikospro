@@ -3,7 +3,8 @@ import '@mdi/font/css/materialdesignicons.css'
 </script>
 <template lang="pug">
 NuxtLayout
-    NuxtPage
+  NuxtPage
+  NuxtSnackbar
 </template>
 
 <style scoped lang="sass">

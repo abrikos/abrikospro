@@ -2138,6 +2138,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@quasar/extras@npm:^1.16.12":
+  version: 1.16.12
+  resolution: "@quasar/extras@npm:1.16.12"
+  checksum: b39bffd09909295613c5b3362ac4c6d2095d8815174fd82fbd4e0cdad0c2937fcdfeb39056871b8fc68a1a499181c3aae945b035acd9050c6c5c050980362950
+  languageName: node
+  linkType: hard
+
 "@react-native-async-storage/async-storage@npm:^1.17.11":
   version: 1.24.0
   resolution: "@react-native-async-storage/async-storage@npm:1.24.0"
@@ -3944,6 +3951,7 @@ __metadata:
     "@metamask/sdk": ^0.14.1
     "@nuxt/devtools": latest
     "@pinia/nuxt": ^0.5.1
+    "@quasar/extras": ^1.16.12
     "@types/fs-extra": ^11.0.4
     "@types/node-telegram-bot-api": ^0.64.1
     "@types/nodemailer": ^6.4.14
@@ -3955,9 +3963,11 @@ __metadata:
     nodemailer: ^6.9.7
     nuxt: ^3.13.2
     nuxt-mongoose: ^1.0.3
+    nuxt-quasar-ui: ^2.1.6
     nuxt-snackbar: ^1.0.4
     pinia: ^2.1.7
     pug: ^3.0.3
+    quasar: ^2.17.0
     sass: ^1.79.4
     vue: ^3.5.11
     vue-i18n: ^10.0.4
@@ -8386,6 +8396,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nuxt-quasar-ui@npm:^2.1.6":
+  version: 2.1.6
+  resolution: "nuxt-quasar-ui@npm:2.1.6"
+  dependencies:
+    "@nuxt/kit": ^3.13.2
+    defu: ^6.1.4
+    magic-string: ^0.30.11
+    p-memoize: ^7.1.1
+    semver: ^7.6.3
+  peerDependencies:
+    "@quasar/extras": ^1
+    quasar: ^2.8.0
+  checksum: 76865fd18d68c8817734d7114bf21dfb36e0bc2930948a7f1ec5f1800ee56e71a57cd8578e87bb27a49824ee8d1a0e2f7b7282ed889895d11270fcd29eaf8996
+  languageName: node
+  linkType: hard
+
 "nuxt-snackbar@npm:^1.0.4":
   version: 1.1.2
   resolution: "nuxt-snackbar@npm:1.1.2"
@@ -8629,6 +8655,16 @@ __metadata:
   dependencies:
     aggregate-error: ^3.0.0
   checksum: cb0ab21ec0f32ddffd31dfc250e3afa61e103ef43d957cc45497afe37513634589316de4eb88abdfd969fe6410c22c0b93ab24328833b8eb1ccc087fc0442a1c
+  languageName: node
+  linkType: hard
+
+"p-memoize@npm:^7.1.1":
+  version: 7.1.1
+  resolution: "p-memoize@npm:7.1.1"
+  dependencies:
+    mimic-fn: ^4.0.0
+    type-fest: ^3.0.0
+  checksum: 2fc5b12fc530aed9c1e455f706d8da2a2e6bed4573f611a4e92b2a75f253e8c0acc63ad014b55f155b5d5de110c586b490a4d6612d64bc743106cad626d995fd
   languageName: node
   linkType: hard
 
@@ -9501,6 +9537,13 @@ __metadata:
   bin:
     qrcode: bin/qrcode
   checksum: 9a8a20a0a9cb1d15de8e7b3ffa214e8b6d2a8b07655f25bd1b1d77f4681488f84d7bae569870c0652872d829d5f8ac4922c27a6bd14c13f0e197bf07b28dead7
+  languageName: node
+  linkType: hard
+
+"quasar@npm:^2.17.0":
+  version: 2.17.0
+  resolution: "quasar@npm:2.17.0"
+  checksum: 3277b19bcb1dfd4d5daa553dd6af6fe0cc6e01513b3cc3b6076e854a06f78ec57ef151803241e10b8a7a4a5d322cf351f72cb5360b4e49e2b9999a902b27b028
   languageName: node
   linkType: hard
 
@@ -10749,7 +10792,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^3.8.0":
+"type-fest@npm:^3.0.0, type-fest@npm:^3.8.0":
   version: 3.13.1
   resolution: "type-fest@npm:3.13.1"
   checksum: c06b0901d54391dc46de3802375f5579868949d71f93b425ce564e19a428a0d411ae8d8cb0e300d330071d86152c3ea86e744c3f2860a42a79585b6ec2fdae8e

@@ -2,30 +2,39 @@
 import type {VDataTable} from 'vuetify/lib/components/index.mjs'
 
 const router = useRouter()
-const {data: fiscal, refresh} = await useNuxtApp().$GET('/fiscal/goods')
+const {data: list, refresh} = await useNuxtApp().$GET('/fiscal/goods')
 const headers = [
-    {title: 'Наименование', key: 'name'},
-    {title: 'Кол-во', key: 'quantity', align: 'end'},
-    {title: 'Цена', key: 'priceHuman', align: 'end'},
-    {title: 'Сумма', key: 'sum', align: 'end'},
-    {title: 'Дата', key: 'fiscal.date', align: 'end'},
-    {title: 'Магазин', key: 'fiscal.retailPlaceFull'},
+    {label: 'Наименование', field: 'name', name:'', align: 'left'},
+    {label: 'Кол-во', field: 'quantity', name:''},
+    {label: 'Цена', field: 'priceHuman', name:''},
+    {label: 'Сумма', field: 'sum', name:''},
+    {label: 'Дата', field: 'fiscal.date', name:''},
+    {label: 'Магазин', field: 'fiscal.retailPlaceFull', name:''},
 
 ]
-type SortItem = InstanceType<typeof VDataTable>['sortBy']
-let sortBy: SortItem = [{key: 'fiscal.date', order: 'desc'}]
-const search = ref()
+const search = ref('')
 
 function goToFiscal(e: any, row: any) {
-    router.push(`/fiscal/view-${row.item.fiscal.id}`)
+  console.log(row)
+    //router.push(`/fiscal/view-${row.item.fiscal.id}`)
 }
+
+const filtered = computed(()=>{
+  return list.value.filter((v:any)=>{
+    for(const field in v){
+      if(headers.map(h=>h.field).includes(field) && v[field].toString().toLowerCase().match(search.value.toLowerCase())){ return true }
+    }
+  })
+})
+
 
 
 </script>
 
 <template lang="pug">
-v-text-field(v-model="search" prepend-inner-icon="mdi-magnify" flat hide-details variant="solo-filled")
-v-data-table(:items="fiscal" :headers="headers" v-model:search="search" @click:row="goToFiscal" v-model:sort-by="sortBy" item-value="id")
+q-input(v-model="search" clearable @clear="search='';doSearch()" label="Поиск" )
+//q-table(:rows="fiscal" :headers="headers" v-model:search="search" @click:row="goToFiscal" item-value="id")
+q-table(:rows="filtered" :columns="headers" @row-click="goToFiscal" :pagination="{rowsPerPage:10}")
 
 </template>
 

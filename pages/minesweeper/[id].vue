@@ -89,7 +89,7 @@ div#field(:style="{width:fieldSize+'px', padding: fieldPadding+'px'}")
     div.counter {{time}}
     div#smile(@click="restart")
       //v-btn(:icon="smileIcon" size="x-small" color="yellow" )
-      v-icon(color="black" ) {{smileIcon}}
+      q-icon(color="black" :name="smileIcon")
     div.counter {{game.turn}}
   div#field-border(:style="{borderWidth:fieldBorder+'px'}")
     div#miner

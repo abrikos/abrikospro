@@ -22,7 +22,6 @@ export default defineNuxtConfig({
     },
 
     modules: [
-        '@invictus.codes/nuxt-vuetify',
         'nuxt-mongoose',
         'nuxt-snackbar',
         '@pinia/nuxt',
@@ -95,34 +94,6 @@ export default defineNuxtConfig({
         options: {},
         modelsDir: 'models',
     },
-
-    css: ['vuetify/lib/styles/main.sass', '~/assets/vuetify.sass'],
-
-    /*vuetify: {
-        /!* vuetify options *!/
-
-        vuetifyOptions: {
-            theme: {
-                defaultTheme: 'dark'
-            },
-            icons: {
-                defaultSet: 'mdi', // This is already the default value - only for display purposes
-            },
-            // @TODO: list all vuetify options
-        },
-
-        moduleOptions: {
-            //customVariables: ['~/assets/variables.scss'],
-            /!* nuxt-vuetify module options *!/
-            treeshaking: true,
-            useIconCDN: false,
-
-            /!* vite-plugin-vuetify options *!/
-            styles: 'sass',
-            autoImport: true,
-            //useVuetifyLabs: true,
-        }
-    },*/
 
     build: {
         transpile: ['fetch-custom'],
